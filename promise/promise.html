@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise的学习</title>
+</head>
+<body>
+    <div style="width:600px;height:200px;background:yellowgreen;color:#000;padding:50px;line-height:50px;margin:0 auto;">
+        所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
+        从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，
+        各种异步操作都可以用同样的方法进行处理。
+    </div>
+    <script>
+        window.onload = function () {
+            // promise的设计 逻辑就是 先把then里面的function 放到一个数组里面 
+            // 先执行同步操作 等 异步操作返回了 然后再把返回值输入到数组里面的 一个一个执行then方法
+            // 所以 then只有在同步操作执行完成了之后才会执行
+            // function Promise(fn) {
+            //     var value = null,
+            //         callbacks = [];  //callbacks为数组，因为可能同时有很多个回调
+            //     this.then = function (onFulfilled) {
+            //         callbacks.push(onFulfilled);
+            //     };
+            //     function resolve(value) {
+            //         callbacks.forEach(function (callback) {
+            //             callback(value);
+            //         });
+            //     }
+            //     console.log(resolve,'resolve');
+            //     fn(resolve);
+            // };
+            // promise链式操作的原理  若不返回的话则结束
+            var promisesss = new Promise(function (resolve) {
+                resolve('111')
+            });
+            //then方法的第一个参数是Resolved状态的回调函数，第二个参数（可选）是Rejected状态的回调函数。
+            promisesss.then(function (Response) {
+                console.log(Response);
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
+                        resolve('222');
+                    }, 1000)
+                })
+
+            }).then(function (res2) {
+                console.log(res2);
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
+                        resolve('333');
+                    }, 1000)
+                })
+            }).then(function (res3) {
+                console.log(res3);
+            });
+            // 异步小demo 如果同步则报错中断 异步则不会
+            // function error(i){
+            //     console.log(i);
+            //     var test=aaa;
+            // };
+
+            // setTimeout(function(){
+            //     error(1);
+            // },100);
+            // setTimeout(function(){
+            //     error(2);
+            // },1000);
+            //  setTimeout(function(){
+            //     error(3);
+            // },1000);
+        };
+    </script>
+
+</body>
+
+</html>

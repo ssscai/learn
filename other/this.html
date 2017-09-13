@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数的学习</title>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div style="width:600px;height:200px;background:yellowgreen;color:#fff;">箭头函数的学习</div>
+    <script>
+      //学习来源http://blog.jobbole.com/81018/
+        //其实理清上面情况也是有迹可循的，就以定义对象里的方法里传入函数为例：
+        // 情形一：传入的参数是函数的别名，那么函数的this就是指向window；
+        // 情形二：传入的参数是被new过的构造函数，那么this就是指向实例化的对象本身；
+        // 情形三：如果我们想把被传入的函数对象里this的指针指向外部字面量定义的对象，那么我们就是用apply和call
+    </script>
+    <script type="text/javascript">
+        var name = "I am window";
+        function gtn(){
+            console.info('gtn', this);
+        }
+        var obj = {
+            name:"sharpxiajun",
+            job:"Software",
+            ftn01:function(obj){
+                obj.show();
+            },
+            ftn02:function(ftn){
+                ftn();
+            },
+            ftn03:function(ftn){
+                ftn.call(this);
+            },
+            ftn04:function(gtn){
+                gtn();
+                gtn.apply(this);//this 绑定到gtn上  否则为window
+            }
+        };
+        function Person(name){
+            this.name = name;
+            this.show = function(){
+                console.log("姓名:" + this.name);
+                console.log(this);
+            }
+        }
+        var p = new Person("Person");
+        obj.ftn01(p);
+        obj.ftn02(function(){
+        console.log(this.name);
+        console.log(this);
+        });
+        obj.ftn03(function(){
+            console.log(this.name);
+            console.log(this);
+        });
+        obj.ftn04(gtn);
+        </script>
+</body>
+
+</html>

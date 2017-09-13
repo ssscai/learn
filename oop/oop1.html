@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oop1</title>
+    <style>
+        *{
+            margin:0;padding:0;list-style:none;
+        }
+        div{
+            width:300px;height:30px;background:yellowgreen;
+            margin-top:10px;
+        }
+        p{
+            width:100px;height:10px;background:blue;margin:10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div>11111111111</div>
+    <div>22222222222</div> 
+    <p>111111111111</p>
+    <p>2222222222</p>
+    <script>
+    window.onload=function(){
+	   //创建div
+	   var div=document.createElement('div');
+	   //设置样式：
+	   div.style.width=100+'px';
+	   div.style.height=300+'px';
+	   div.style.backgroundColor="red";
+	   //添加到页面上
+	   //document.body.appendChild(div);
+       try{
+        //监听可能出错买的代码
+       }catch(e){
+        //出错信息
+       }
+       finally{
+        //无论是否出错都执行
+       }
+       //需求：设置页面上 div p的边框为10px   
+       //面向过程的思路：获取所有的div  循环设置样式
+		// var divs=document.getElementsByTagName('div');
+        // for(var i=0;i<divs.length;i++){
+        //     divs[i].style.border="10px solid red"
+        // }
+        //使用面向对象的思想进行封装；
+        function tag(tagname){
+            return document.getElementsByTagName(tagname)
+        };
+        function setStyle(elements){
+            for(var i=0;i<elements.length;i++){
+                elements[i].style.border="10px solid red";
+            }
+        };
+        // var divs=tag('div');
+        // setStyle(divs);
+        // var ps=tag('p');
+		// setStyle(ps);
+        //使用函数将代码封装  复用性更高  
+        //使用函数封装的问题：1、tag  setStyle 是全局变量 造成全局变量的污染 2、代码结构不够清晰 不方便维护
+        //解决方法：使用对象进行封装
+        //firstOpp 暴露在全局  入口 避免全局变量污染  功能相近的在一个模块下 也就是说通过对象将代码模块化
+        var firstOpp={
+            getEle:{
+                tagName:function(tagname){
+                    return document.getElementsByTagName(tagname)
+                },
+                tagId:function(tagid){
+                    return document.getElementsByTagName(tagid)
+                }
+            },
+            setCss:{
+                setStyle:function(elements){
+                    for(var i=0;i<elements.length;i++){
+                        elements[i].style.border="10px solid red";
+                    }
+                },
+                setClass:function(){
+
+                }
+            }          
+        }
+        var divdiv=firstOpp.getEle.tagName('div');
+        firstOpp.setCss.setStyle(divdiv);
+	}
+    </script>
+</body>
+</html>

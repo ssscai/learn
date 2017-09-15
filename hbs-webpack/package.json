@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack -w --colors --profile"
   },
-  "author": "SBDavid",
+  "author": "sss",
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.0.10",

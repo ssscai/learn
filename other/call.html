@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+
+<body>
+	<div style="width:800px;height:600px;background:yellowgreen;margin:0 auto;">
+		<a href="javascript:;" target="_blank">111111111111111111</a>
+		<a href="javascript:;" target="_blank">222222222222222222</a>
+		<a href="http://pptv.com" target="_blank" id="threee">333333333333333333</a>
+	</div>
+		<!-- <script>
+				//返回的 NodeList类型的对象集合。
+				var links=document.getElementsByTagName('a');
+				links=Array.prototype.slice.call(links, 0);
+			window.onload=function(){
+				var jumpWithLoginState=function(){
+					//开始
+					var EventDelegate = function(filter, handler){
+						console.log(arguments,'arguments')
+						return function(ev){
+							var el = ev.target;
+							do{
+								console.log(filter,'filter')
+								if(!filter(el)) continue;
+								ev.delegateTarget = el;
+								//把this(这里指的是body)绑定到handler上面  也就是说在handler这个函数中
+								//如果有this则this指的是body，否则指的是window;
+								console.log(arguments,'argument')
+								handler.apply(this, arguments);
+								//handler();
+							} while(el!=this && (el = el.parentNode));
+						}
+					}
+					return function(){
+						var body = document.getElementsByTagName('body')[0];					
+						body.addEventListener('click', EventDelegate(function(el){
+							return (el.nodeName.toLowerCase()=='a') && (el.target=='_blank');
+						}, function(ev){
+							console.log(this,'thisssssssss',ev)
+							ev.preventDefault();
+							var el = ev.delegateTarget;
+							var link = el.href;
+							
+							try{
+								//link = external.GetObject('@pplive.com/passport;1').GetJTWWithLoginState(encodeURIComponent(el.href));
+							} catch(e){}
+							window.open(link);
+						}), false);
+					}
+					//结束
+
+				};
+				var sss=jumpWithLoginState();
+				sss();
+			}
+		</script> -->
+		<!-- <script type="text/javascript">
+			console.log(ftn01);//ftn01()  注意：在firebug下这个打印结果是可以点击，点击后会显示函数的定义
+			console.log(ftn02);// undefined
+			function ftn01(){
+			   console.log("I am ftn01!");
+			}
+			var ftn02 = function(){
+				console.log("I am ftn02!");
+			}
+
+
+			var name = "sharpxiajun";
+			function ftn(name){
+				console.log(name);
+				console.log(this.name);
+				console.log(this,'ftn00000000000000000000000');
+			}
+			ftn("101");
+			var obj = {
+			name:"xtq"
+			};
+			ftn.call(obj,"102");
+		</script> -->
+
+		<script type="text/javascript">
+
+		var name = "I am window";
+		var obj = {
+			name:"sharpxiajun",
+			job:"Software",
+			ftn01:function(obj){
+				obj.show();
+			},
+			ftn02:function(ftn){
+				ftn();
+			},
+			ftn03:function(ftn){
+				ftn.call(this);
+			}
+		};
+		function Person(name){
+			this.name = name;
+			this.show = function(){
+				console.log("姓名:" + this.name);
+				console.log(this);
+			}
+		}
+		var p = new Person("Person");
+		obj.ftn01(p);
+		obj.ftn02(function(){
+		console.log(this.name);
+		console.log(this);
+		});
+		obj.ftn03(function(){
+			console.log(this.name);
+			console.log(this);
+		});
+
+		// 		其实理清上面情况也是有迹可循的，就以定义对象里的方法里传入函数为例：
+
+		// 情形一：传入的参数是函数的别名，那么函数的this就是指向window；
+
+		// 情形二：传入的参数是被new过的构造函数，那么this就是指向实例化的对象本身；
+
+		// 情形三：如果我们想把被传入的函数对象里this的指针指向外部字面量定义的对象，那么我们就是用apply和call
+			function g(params) {
+				console.info('g', this);
+			}
+			var name = "I am window";
+			var obj = {
+				name:"sharpxiajun",
+				job:"Software",
+				ftn03:function(g){
+					console.log(this);
+					g();
+					g.call(this);
+
+				}
+			};
+			obj.ftn03(g);
+
+			// var ftn04 = obj.ftn03;
+			// ftn04();
+		</script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise的学习</title>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div style="width:600px;height:200px;background:yellowgreen;color:#fff;">promise的学习</div>
+    <script>
+        window.onload = function () {
+            // 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。
+            // var promise=new Promise(function(resolve,reject){
+
+            // });
+            // console.log(promise,'promise')
+            // promise.then(function(){
+            //     console.log('haha')
+            // },function(){
+            //     console.log('mimimi')
+            // });
+            // function timeout(ms) {
+            //   return new Promise((resolve, reject) => {
+            //     setTimeout(resolve, ms, 'done');
+            //   });
+            // }
+
+            // timeout(100).then((value) => {
+            //   console.log(value);
+            // });
+            // var promise = new Promise(function(resolve, reject) {
+            //   console.log('Promise');
+            //   resolve();
+            // });
+
+            // promise.then(function() {
+            //   console.log('Resolved.');
+            // });
+
+            // console.log('Hi!');
+            // function Promise(fn) {
+            //     var value = null,
+            //         callbacks = [];  //callbacks为数组，因为可能同时有很多个回调
+
+            //     this.then = function (onFulfilled) {
+            //         callbacks.push(onFulfilled);
+            //     };
+
+            //     function resolve(value) {
+            //         callbacks.forEach(function (callback) {
+            //             callback(value);
+            //         });
+            //     }
+            //     console.log(resolve,'resolve');
+
+            //     fn(resolve);
+            // };
+
+            // promise链式操作的原理  若不返回的话则结束
+            var promisesss = new Promise(function (resolve) {
+                resolve('孙沙沙1')
+            });
+            promisesss.then(function (Response) {
+                console.log(Response);
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
+                        resolve('孙沙沙2');
+                    }, 1000)
+                })
+
+            }).then(function (res2) {
+                console.log(res2);
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
+                        resolve('孙沙沙3');
+                    }, 1000)
+                })
+            }).then(function (res3) {
+                console.log(res3);
+            });
+            // 
+            // 异步小demo 如果同步则报错中断 异步则不会
+            // function error(i){
+            //     console.log(i);
+            //     var test=aaa;
+            // };
+
+            // setTimeout(function(){
+            //     error(1);
+            // },100);
+            // setTimeout(function(){
+            //     error(2);
+            // },1000);
+            //  setTimeout(function(){
+            //     error(3);
+            // },1000);
+            // promise再学习
+            var p1 = new Promise(function (resolve, reject) {
+                setTimeout(() => reject(new Error('fail')), 3000)
+            })
+
+            var p2 = new Promise(function (resolve, reject) {
+                setTimeout(() => resolve(p1), 1000)
+            })
+
+            p2.then(result => console.log(result)).catch(error => console.log(error))
+
+        };
+        var aa = 'http://www.pptv.com?a=2#231';
+    </script>
+
+</body>
+
+</html>

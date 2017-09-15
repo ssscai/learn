@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this的学习</title>
+</head>
+<body>
+    <div style="width:600px;height:200px;background:yellowgreen;color:#fff;">this的学习</div>
+    	this是JavaScript中的一个关键字, 它的值取决于他所在的函数如何被调用. 下面是this可以获得新值的6中不同的方式:
+    <div>this在全局范围内<br/>this在对象的构造函数内<br/>this在对象的方法内<br/>this在一个简单的函数内<br/>this在箭头函<br/>this在一个事件侦听器内</div>
+    <script>
+    window.onload=function(){
+    	console.log(this,'全局');
+    	function Person(name,age){
+    		this.name=name;
+    		this.age=age;
+    		console.log(this)
+    	}
+    	var p1=new Person('张三','30');//在构造函数内this指的是新创建的实例
+    	let o = {
+		    sayThis(){
+		        console.log(this,'123');
+		    }
+		}
+
+		o.sayThis();
+		//This在事件侦听器内在事件侦听器内, this被指向的是触发这个事件的元素:
+
+		// let button = document.querySelector('button');
+
+		// button.addEventListener('click', function() {
+		//     console.log(this); // button
+		// });
+		var sum=0;
+		for(var i=0;i<10;i++){
+			if(i%2!==0){
+				continue;
+			}
+			sum+=i;
+		}
+		console.log(sum,'sumsum');
+		function funName(){
+
+		}
+		//后面函数名字只在函数内部使用在函数外部不能访问  则没意义。
+		var aa=function name(){
+			console.log(aa)
+		}
+		aa()
+		var fn1=new Function();
+		fn1();
+		console.log(fn1,'fn1s');
+		try{
+			//可能出现异常的代码
+			//a();
+			throw '你的代码坏了';
+		}catch(e){
+			//e 出现的错误信息 异常信息则可以手动抛出
+			//console.log(e)
+		};
+		//为了保证后面的代码再出现异常之后继续执行，则异常处理。
+		try{
+			xyz();
+			//var mmmm+++++;//这是语法错误 不能捕获
+		}catch(e){
+			console.log(e.errmsg)
+		}
+		finally{
+			console.log('不管出不出现错误，这里的代码都会执行，一般用来释放资源')
+		}
+		function s(num1,num2){
+			if(num1==undefined||num2==undefined){
+				throw {
+					errmsg:'次卧',
+					errorsss:'haha'
+				}
+			}else{
+				return num1+num2;
+			}
+			
+		}
+	   //创建div
+	   var div=document.createElement('div');
+	   //设置样式：
+	   div.style.width=100+'px';
+	   div.style.height=300+'px';
+	   div.style.backgroundColor="red";
+	   //添加到页面上
+	   document.body.appendChild(div);
+		
+
+	}
+	
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+
+*{
+    margin:0;padding:0;list-style: none;
+}
+.card{
+    font-size:30px;
+    float:left;
+    margin:20px;
+    padding:10px;
+    background-color:pink;
+}

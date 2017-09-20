@@ -17,10 +17,11 @@
             <div>职业：{{job}}</div>
             {{!--
                 如何给chinese赋予意义呢 使用helper
+                @../index可以拿到上层的索引index
                 <ul>
                      {{#with books}}
                         {{#each this}}
-                            <li>{{../@index}}-{{@index}} {{this}}</li>
+                            <li>{{@../index}}-{{@index}} {{this}}</li>
                         {{/each}}
                     {{/with}}
                     <!-- this数据中上下文的每一条记录 -->
@@ -28,8 +29,11 @@
                 with可以改变执行环境的上下文
             --}}
             <ul>
-                    {{#each books}}
-                    <li><li>{{../@index}}-{{@index}} {{this}} {{this}}</li>
+                {{#each books}}
+                    <li  {{#isFirst @index}} style="color:red;" {{/isFirst}} 
+                         {{#if ../blue}} style="color:blue;" {{/if}}>
+                        {{addone @../index}}--{{addone @index}} {{this}}
+                    </li>
                 {{/each}}
            
             </ul>
@@ -41,6 +45,11 @@
 <body>
     <!-- 
         一般写法：字符串拼接：标签代码在js中  可读性不好  不易维护
+        让我们在js中避免写js代码，可读性比较好，容易维护
+        {{}}
+        {{#each}}  数组  之间的this代表数组的每个元素。
+        内联helper 变量替换
+        块helper 当某个条件成立  标签里面的内容显示出来
     -->
     <!--前端模板引擎：数据--模板-- 渲染 -->
     <div id="card">
@@ -60,7 +69,8 @@
                 job: '前端开发工程师',
                 books:[
                     '艺术',
-                    '幽灵'
+                    '幽灵',
+                    '奇葩'
                 ]
             },
             {
@@ -84,17 +94,36 @@
             },
         ]
         Handlebars.registerHelper('chinese',function(value){
-            console.log('chinese',value);
+            //console.log('chinese',value);
             var arr=['一','二','三'];
+            this.books
+            if(this.books&&this.books.length>2){
+                this.blue=1;
+            }
             return arr[value];
+        });
+        Handlebars.registerHelper('addone',function(value){
+            return value+1;
+        });
+        Handlebars.registerHelper('isFirst',function(value,options){
+            // isFirst块hepler
+            console.log(value,'value');
+            if(value==0){
+                return options.fn(this);
+            }
+        });
+        Handlebars.registerHelper('isblue',function(value,options){
+            if(value && value.length>2){
+                return options.fn(this);
+            }
         })
         var t=$('#card-template').html();
-        console.log(t)
+        //console.log(t)
         var f=Handlebars.compile(t);
-        console.log(f)
+        //console.log(f)
         var h=f(data);
         $('#card').html(h);
-        console.log(h);
+        //console.log(h);
         //js中没有html代码
     </script>
 </body>

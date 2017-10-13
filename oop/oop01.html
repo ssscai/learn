@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>oop1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 300px;
+            height: 30px;
+            background: yellowgreen;
+            margin-top: 10px;
+        }
+
+        p {
+            width: 100px;
+            height: 10px;
+            background: blue;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        for in 遍历对象的键
+    </div>
+    <script>
+        //属性节点操作：getAttribute setAttribute removeAttribute
+        try{
+            //throw手动抛出异常 在catch中可以捕获异常
+        }catch(e){
+            //
+        }
+        finally{
+
+        }
+        var obj = {
+            name: 'zs',
+            age: 20,
+            car: car
+        }
+        for (var i in obj) {
+            console.log(i, 'i', obj[i])
+        }
+        var stst = 'year' in obj;
+        console.log(stst);
+        var arr = [1, 2, 3, 4];
+        console.log('0' in arr);
+        console.log(arr.indexOf(3), '数组数组'); //返回的值为指定的元素 找到则返回对应的索引  没有找到则返回-1
+        //值类型  引用类型存储的是数据再内存中的地址；
+        var car = {
+            brand: 'sss',
+            type: '429'
+        }
+        //对象和对象之间是通过地址来联系的;
+        //值类型和引用类型赋值的特征：
+        var str1 = "坚持的意义";
+        var str2 = str1;
+        //直接把数据复制一份进行赋值。两份数据是完全独立的
+        str1 = '你以为呢'
+        console.log(str2, str1);
+        //yin    
+        var p1 = {
+            name: 'zs',
+            age: 13
+        };
+        var p2 = p1; //引用类型的赋值：将变量中存储的地址进行复制。但是两个变量
+        p1.age = '14';
+        console.log(p2.age);
+        //引用类型和值类型在函数中的使用：
+        var num = 10;
+
+        function changeNumber(num) {
+            //var num1=num;隐含的操作  默认的把实参赋值给形参。
+            num1 = 100;
+            console.log(num1); //100
+        }
+        changeNumber(num);
+        console.log(num); //10
+        //在函数调用的时候有个隐含的操作 在函数调用是会默认的把实参赋值给形参。
+        var obj1 = {
+            name: '宅男'
+        };
+
+        function jinhua(parem) {
+            parem.name = "高富帅";
+            //重新创建了对象，修改了parem的指向    obj1还指向原来的对象
+            parem = {
+                name: '腐女'
+            }
+            parem.name = "宅男";
+        }
+        jinhua(obj);
+        console.log(obj.name);
+        //*******************
+        //对象的动态特性：点语法或者中括号 如果对象存在该属性则修改，若不存在该属性，则添加并且赋值
+        var mm = {
+            z: 'kiki'
+        }
+        mm.k = 'ser';
+        mm['sss'] = 'haha';
+        mm.car = '汽车';
+
+        mm[{}] = function () {
+            console.log('我添加成功了')
+        };
+        mm["[object Object]"] = function () {
+            console.log('我添加成功了哈哈哈')
+        };
+        mm[{}]();
+        mm["[object Object]"]();
+        console.log(mm, 'mmm');
+        var iii = {};
+        iii.toString(); //"[object Object]"把对象转化为字符串
+        //逻辑中断：&& || ！  也叫短路运算;
+        var number = 0 || 1;
+        // var result=表达式1||表达式2  如果表达是1的值为真  则result的值为表达式1  否则为表达式2
+        // var result=表达式1 && 表达式2 如果表达式1的值为真 则result的值为表达式2 否则为表达式1
+        //delete 关键字 可以删除对象的属性  还有未使用var 声明的变量
+        var  obj3={
+            name:'张三',
+            age:'123'
+        }
+        console.log(delete obj3.name);//返回值表示的是删除属性是否成功  
+        console.log(obj3,'obj3');
+        var num4=12;
+        num5=789;
+        console.log(delete num5  ,'num5');
+        //如果删除的属性在原型当中  返回值为true  但是并没有删除
+        var result = delete obj3.toString;
+        console.log(result);
+        console.log(obj.toString());
+
+    </script>
+</body>
+
+</html>

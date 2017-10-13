@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象学习开始啦1</title>
+    <style>
+    *{
+        margin:0;padding:0;list-style: none;
+    }
+    span{
+       display: block; width:600px;height:300px;background:yellowgreen;margin:0 auto;
+    }
+    div,p{
+        width:200px;height:200px;
+    }
+    </style>
+</head>
+<body>
+    <span>
+        面向过程的思维方式：把解决问题的关注点  在每一步。
+        面向对象编程的基本概念：把解决问题的关注点 放在一系列的对象上。
+        例如去吃餐馆吃饭：1、我 2、餐馆
+        面向对象：是一种思维方式。解决问题的思路。是一种编程思想。
+        通过代码可以实现面向对象的思维方式。
+        面向对象相关的概念：
+        对象：对象的特征就是用来描述对象的相关信息。
+        对象的行为：描述对象的动作。
+        js中的对象：一组键值对的集合，属性 和 方法。 
+        为什么学习面向对象编程？
+        面向对象是面向过程的封装。封装的意义是复用。
+    </span>
+    <div></div>
+    <div></div>
+    <div></div>
+    <p>我是第1个p元素</p>
+    <p>我是第2个p元素</p>
+    <p>我是第3个p元素</p>
+    <script>
+        window.onload=function(){
+            var student={
+                name:'',
+                year:'',
+                grade:'',
+                phone:133393936303
+            }
+            var car={
+                color:'yellow',
+                brand:'宝马',
+                run:function(){
+                }
+            }
+            //要求创建一个div 并且设置样式 添加到body中
+            var oDiv=document.createElement('span');
+            oDiv.style.width=300+'px';
+            oDiv.style.height=300+'px';
+            oDiv.style.background='red';
+            oDiv.style.border="10px solid blue";
+            document.body.appendChild(oDiv);
+            //面向对象的写法：面向对象是面向过程的封装
+            //面向对象编程举例  设置页面上div和p的边框为1px solid red;
+            // var divs=document.getElementsByTagName('div');
+            // for(var i=0;i<divs.length;i++){
+            //     divs[i].style.border="1px solid red";
+            // }
+            // var ps=document.getElementsByTagName('p');
+            // for(var i=0;i<ps.length;i++){
+            //     ps[i].style.border="1px solid red"
+            // }
+            //代码的原则：避免重复  
+            //参数 传递 参数
+            var divs=getele('div');
+            function getele(biaoqian){
+                return document.getElementsByTagName(biaoqian);
+            }
+            function setCss(elements){
+                for(var i=0;i<elements.length;i++){
+                    elements[i].style.border="10px solid pink"
+                }
+            }
+            setCss(divs);
+            //使用函数将代码封装 复用性提高  问题 ：getele、setCss在全局  
+            //使用函数封装的问题：全局变量污染   代码结构不够清晰  维护起来不方便
+            //解决方法：使用对象进行封装。例如只用itcastQuery暴露在全局当中  功能相近的再放到一个对象中 
+            var itcastQuery={
+                getele:{
+                    tag:function(biaoqian){
+                        return document.getElementsByTagName(biaoqian);
+                    },
+                    id:function(biaoqian){
+                        return docuemnt.getElementById(biaoqian);
+                    }
+                },    
+                setCss:function(elements){
+                    for(var i=0;i<elements.length;i++){
+                        elements[i].style.border="10px solid pink"
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

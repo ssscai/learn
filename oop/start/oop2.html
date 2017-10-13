@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象学习开始啦2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //封装之后将代码模块化
+        var obj = {
+            name: "张学友",
+            age: '40',
+            sayhi: function () {
+
+            }
+        }
+        var obj1={
+            year:'1988'
+        }
+        //继承：混入式继承：for in
+        for(var k  in obj){
+            obj1[k]=obj[k]
+        }
+        console.log(obj1);
+        //第一：对象字面量
+        //第二：使用构造函数创建对象
+        var obj2=new Object();
+        obj2.name='';
+        obj2.age="";
+        obj2.sayhi=function(){
+
+        }
+        //第三：封装简单工厂函数
+        var creatSong=function(songName,singerName){
+            var o=new Object();
+            o.name=songName;
+            o.age=singerName;
+            o.sayhi=function(){
+            }
+            return o;
+        }
+        var creatSong1=creatSong('战三','hihi');
+        var creatSong2=creatSong('李四','ooo');
+        //简单工厂函数：不推荐使用
+        //第四：自定义构造函数   构造函数通常用来初始化对象  函数参数参数参数参数
+        function Person(name,age){
+            //把刚才用new创建出来的对象(p)赋值给this,默认隐含的操作
+            this.name=name;
+            this.age=age;
+            this.sayhi=function(){
+                console.log('sayhi')
+            }
+            // return {
+            //     mm:'213'
+            // }
+        }
+        //var p=new Person('张三','爱拼才会赢');//构造函数中的this是new出来的
+        //p.sayhi();
+       // console.log(p,'ppp');
+        var p2=Person('李四','相信自己');
+        console.log(p2,'p2');
+        //构造函数的返回值：默认返回的是新创建出来的对象
+        //1.使用new关键字创建对象
+        //2.调用构造函数，把新创建出来的对象赋值给构造函数内的this
+        //3.在构造函数内使用this为新创建出来的对象新增成员
+        //4.默认返回新创建的这个对象 （普通的函数，如果不写返回语句，会返回undefined）
+        function PersonNew(name,age){
+            this.name=name;
+            this.age=age;
+            this.act=function(){
+                console.log('act','act')
+            }
+        }
+        var xyz=new PersonNew('xyz','8');
+        //用原型解决构造函数存在的问题
+        function PersonNewPro(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        PersonNewPro.prototype.sayhiworld=function(){
+            console.log('sayhiworld');
+        }
+        PersonNewPro.prototype['mmm']=function(){
+            console.log('mmm')
+        }
+        var li=new PersonNewPro('刘德华','歌曲');//创建对象的过程叫实例化
+        li.sayhiworld();
+        li.mmm();
+        console.log(li,'li');;
+        //定义在原型中的方法是可以被所有实例共享
+        //通过构造函数创建对象的过程叫实例化 li是构造函数PersonNewPro的实例
+        //原型的使用方法：
+        //1、对象动态特性添加 2、替换
+        var oo={
+            name:''
+        }
+        oo.name="赵四";
+        PersonNewPro.prototype={
+            msg:'你猜我在不在'  //直接替换原型对象
+        }
+        var bb=new PersonNewPro('xyz','100');
+        console.log(bb.msg,'bbmsge');
+        //bb.sayhiworld();//不能调用  107替换了原型对象
+        //如果使用第二种方式使用原型，那么会出现如下问题：
+        //在替换原型之前创建的对象的原型 和 在替换原型对象之后的创建的对象
+        //的原型 不是同一个！
+        //替换原型对象：
+        function  PersonTi(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        PersonTi.prototype.sayHello=function(){
+            console.log('dongtai')
+        }
+        var pp=new PersonTi('name','88');
+        pp.sayHello();
+        PersonTi.prototype={
+            abc:'abc'
+        }
+        var ss=new PersonTi('sss','99');//无法访问到原来的旧原型
+        console.log(ss.abc);
+         pp.sayHello();//可以访问到旧的原型的已经创建出来的对象的原型是不会改变的
+    </script>
+</body>
+
+</html>

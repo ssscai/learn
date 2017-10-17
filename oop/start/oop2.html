@@ -129,6 +129,34 @@
         var ss=new PersonTi('sss','99');//无法访问到原来的旧原型
         console.log(ss.abc);
          pp.sayHello();//可以访问到旧的原型的已经创建出来的对象的原型是不会改变的
+         //原型注意事项
+        function  PersonTest(){
+
+        }
+        PersonTest.prototype.name="test";
+        PersonTest.prototype.age='33';
+        var pptest=new PersonTest();
+        function Addperson(){
+
+        }
+        //1,通过构造函数访问原型
+        Addperson.prototype.msg='在不在'
+        //通过对象访问原型 _proto_  非标准属性  主要用来调试
+        var p=new Addperson();
+        console.log(p,'p')
+       console.log(p.__proto__ .msg  ,'_proto_msge');
+       function PersonOne(){
+
+       }
+       console.log(PersonOne.prototype.constructor,'123');
+       PersonOne.prototype={
+           //
+       }
+       console.log(PersonOne.prototype.constructor,'object修改前');
+       PersonOne.prototype={
+           constructor:PersonOne
+       }
+       console.log(PersonOne.prototype.constructor,'object修改后');
     </script>
 </body>
 

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象学习开始啦3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //继承  
+        function MyArray() {
+            this.name = "我自己的数据";
+        }
+        //MyArray.prototype=[] 同MyArray.prototype=new Array();
+        MyArray.prototype = new Array();
+        MyArray.prototype.sayhi = function () {
+            //salert('hihi')
+        }
+        //内置对象可能被所有对象访问
+        var pp = new MyArray();
+        pp.push('1234');
+        pp.sayhi();
+        console.log(pp);
+        //继承
+        function jicheng(obj) {
+            var o = {};
+            o.__proto__ = obj;
+            return o;
+        }
+        var o = jicheng({
+            name: "张三"
+        });
+        console.log(o, o.name, '0.name');
+        //经典继承
+        //Object.create(obj); 返回一个对象，继承自参数中的obj
+        var oo = {
+            name: '周二'
+        }
+        var ppp = Object.create(oo);
+        console.log(ppp, 'ppp', ppp.name, 'pppname');
+        //es5 这个方法是ES5中出来的，所以存在兼容性问题 
+        //兼容性写法
+        if (Object.create) {
+            var o = Object.create(oo);
+        } else {
+            Object.create = function () {
+                function F() {}
+                F.prototype = obj;
+                var o = new F();
+            }
+            var o = Object.create(obj);
+        }
+        //原型链：
+        //每个构造函数都有原型对象
+        //每个对象都会有构造函数 每个构造函数的原型都是一个对象 那么这个原型对象也会有构造函数 那么这个原型的构造函数也会有对象
+        //这样就会形成一个链式的结构 成为原型链
+        //原型链结构的基本形式：
+        function Person() {
+
+        }
+        var p = new Person();
+        //原型链的作用：
+        //当访问一个对象成员的时候，先在自身找有没有，如果找到直接使用。如果没有找到，则去当前当前对象的原型对象中去查找
+        //如果找到了直接使用，如果没有找到继续向上查找 直到Object.prototype,如果没有找到：属性undefined。方法：报错
+
+
+        //原型继承概念
+        //通过修改原型链结构实现的继承，就叫做原型继承。
+
+        //复杂的原型链继承 动物--》人--》老师---》坏老师
+        function Animal(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        function Human() {
+            this.actionWay = "走路"
+        }
+        Human.prototype = new Animal();
+        //原型替换更改constructor
+        console.log(Human.prototype.constructor, 'Human.prototype.constructor修正前')
+        Human.prototype.constructor = Human;
+        console.log(Human.prototype.constructor, 'Human.prototype.constructor修正后')
+
+        function Teacher() {
+            this.skill = "教书";
+        }
+        Teacher.prototype = new Human();
+        Teacher.prototype.constructor = Teacher;
+
+        function BadTeacher() {
+            this.name = "sss"
+        }
+        BadTeacher.prototype = new Teacher();
+        BadTeacher.prototype.constructor = BadTeacher;
+
+        var badteacher = new BadTeacher();
+
+        console.log(badteacher, 'badtecher');
+        console.log(badteacher.__proto__, '__proto__', badteacher.__proto__.__proto__, '../../');
+
+        //Object.prototype的成员
+        //1.constructor:
+        //原型对象内的一个属性，指向该原型对象相关联的构造函数
+        //2.hasOwnProperty
+        //一个方法，用来判断对象本身（不包含原型）是否拥有某个属性
+        function PPerson() {
+            this.name = "张三";
+        }
+        PPerson.prototype.age = "李四";
+        var mm = new PPerson();
+        console.log(mm.hasOwnProperty('age'), '///////////////////////////name');
+        //3.propertyIsEnumerable 
+        //    1. 判断属性是否属于对象本身
+        //    2. 判断属性是否可以被遍历
+        //        console.log(p.propertyIsEnumerable("name"));
+        // Object.defineProperty();
+        //4. toString （）和  toLocaleString //格式根据电脑的格式。
+        var o = {};
+        console.log(o.toString());
+        console.log(o.toLocaleString());
+
+        var now = new Date();
+        console.log(now.toString());
+        console.log(now.toLocaleString());
+        //5.valueof  获取当前对象的值
+        function PersonLearn() {
+            this.valueOf = function () {
+                return 1;
+            }
+        }
+        var per = new PersonLearn();
+        //per  默认的先去调用对象的valueOf方法。如果valueOf获取到的值无法进行计算，就去调用对象的per的toString方法。
+        console.log(1 + per); //2
+        //6:_proto_
+        //原型对象对象中的属性
+        //可以使用 对象.__proto__ 去访问原型对象 
+
+        //Function学习
+        //Function 
+        var func = new Function("console.log('wo shi 动态创建的函数');console.log('sss');");
+        func();
+        //Function这个构造函数可以用来新建函数对象
+        //1.不传参数，创建一个空的函数
+        //2. 只传一个参数：这个参数就是函数体
+        //3.传多个参数的情况 最后一个函数的函数体  前面的都是函数的形参名 
+        var func1 = new Function("console.log('打印四句歌词')");
+        func1();
+        var func2 = new Function("a", "b", "return a+b");
+        console.log(func2(3, 4));
+        //
+        var str = "var a = 10";
+        eval(str);
+        console.log(a, 'aaaaaa');
+        //instanceof() 用来判断构造函数的原型是否攒在于该对象的原型链上
+        function Mperson(){
+
+        }
+        var mp=new Mperson();
+        //mp-->mp.prototype-->Object.prototype--->null
+        console.log(mp instanceof Mperson);// XX(对象) instanceof Mperson(构造函数);
+        //Function 的原型链
+        
+        var ffoo=new Function();
+        console.log(ffoo.prototype,'ffoo.prototype',ffoo.prototype__proto__)
+
+    </script>
+</body>
+
+</html>

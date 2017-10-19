@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>call和apply</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 600px;
+            height: 200px;
+            background: yellowgreen;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+<script>
+    //闭包练习
+    for (var i = 0; i < 10; i++) {
+        function foo(j) {
+            return console.log(j)
+        }
+        var f = foo(i);
+        setTimeout(f, 0)
+    }
+    //obj是伪数组
+    var obj = {
+        0: "abc",
+        1: "def",
+        2: "hig",
+        length: 3
+    }
+    var arr = [].concat(1, 2, 3, 4, 5);
+    console.log(arr);
+    //apply可以把伪数组拆开一个个传进去
+    var arrt = [].concat.apply([], obj);
+    console.log(arrt, 'arrt');
+
+    function test() {
+        console.log(this.valueOf());
+        //    console.log(+this);
+        // console.log(this)
+    }
+    test();
+    test.apply(1);
+    test.apply('abc');
+    test.apply(true);
+    test.apply(undefined);
+    //当使用call和apply传入的第一个参数为值类型的时候 会将值类型转换成对应的对象（引用类型） 然后赋值给this
+    //当传入的第一个参数为 null或者Undefined的时候会把this赋值为  window
+    //借用构造函数 实现继承
+    function Parent(){
+        this.name="张三";
+        this.age=10;
+    }
+    function Child(){
+        Parent.apply(this);//ch=this;隐含操作
+    }
+    var ch=new Child();
+    console.log(ch,'chch');
+</script>
+</html>

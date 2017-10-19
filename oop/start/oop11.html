@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册事件的兼容性处理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #parent {
+            width: 1000px;
+            height: 600px;
+            background: #ccc;
+        }
+
+        #div1 {
+            width: 600px;
+            height: 200px;
+            background: yellowgreen;
+            margin: 0 auto;
+        }
+
+        #div2 {
+            width: 300px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div id="div1">我是第一个div,哈哈</br>点击我有惊喜哈</div>
+    </div>
+    <div id="div2"></div>
+
+</body>
+<script>
+    window.onload = function () {
+        var div = document.getElementById('div1');
+        // if (div.addEventListener) {
+        //     div.addEventListener('click', function () {
+        //         console.log('点我有惊喜哈')
+        //     }, false)
+        // } else if (div.attachEvent) {
+        //     div.attachEvent('click', function () {
+        //         console.log('点我有惊喜哈')
+        //     })
+        // } else {
+        //     div['onclick'] = function () {
+        //         console.log('点我有惊喜哈')
+        //     }
+        // }
+        //改进1:target 目标div type事件类型  handler 回调
+        // function registerEvent(target, type, handler) {
+        //     if (target.addEventListener) {
+        //         target.addEventListener(type, handler, false)
+        //     } else if (target.attachEvent) {
+        //         target.attachEvent('on'+type, handler)
+        //     } else {
+        //         target['on'+type] = handler
+        //     }
+        // }
+        // registerEvent(div,'click',function(){
+        //     alert('惊喜呢')
+        // })
+        //改进2：每次进来都会判断   没有必要 判断一次就好  addEventListener window对象也有
+        //在函数中返回函数，让外部函数只执行一次，判断也就只会执行一次
+        //使用函数内创建的函数返回给外界，就可以重复使用该函数，进行事件的注册
+        //addEventListener ie9以上支持 事件处理函数中的this-->target
+        //1、注册的事件的处理函数中的，this指向不一致
+        //使用addEventListener的方式注册的点击事件的回调函数中的this 指向target
+        //但是使用attachEvent的方式注册点击事件的回调函数中的this 指向window
+
+        //2、3种注册事件的方式中，回调函数内获取事件对象的方式也是不一致的
+        //要让他们统一，
+        //在第二种的事件注册方式（attachEvent）中，手动给handler传递window.event
+        function createRegisterEvent() {
+            if (window.addEventListener) {
+                return function (target, type, handler) {
+                    target.addEventListener(type, handler, false);
+                    //默认把handler中的e传过去
+
+                }
+            } else if (window.attachEvent) {
+                return function (target, type, handler) {
+                    target.attachEvent("on" + type, function () {
+                        handler.call(target, window.event);
+                    })
+                }
+            } else {
+                return function (target, type, handler) {
+                    target['on' + type] = handler
+                }
+            }
+        }
+        var registeEvent = createRegisterEvent();
+        registeEvent(div, 'click', function (e) {
+            console.log(this); //当前点击的对象 --》this
+            window.event
+            console.log('惊喜呢123');
+        });
+        // 兼容性展示：
+
+        var div2 = document.getElementById('div2');
+
+        function huidiao(e) {
+            console.log(e + "就是当前的事件对象")
+            console.log(this + "就是当前你点击的对象");
+            alert("我是div的点击事件，所有浏览器中，我的功能都是弹出来这句话！");
+        }
+        div2.onclick = huidiao;
+        div2.addEventListener('click', function (e) {
+            console.log(e, '相等2', e === div2)
+        })
+        //ie9（不包括9）以下支持的
+        if (window.attachEvent) {
+            div2.attachEvent("onclick", function () {
+                huidiao.call(div, window.event);
+            })
+        }
+
+    }
+</script>
+
+</html>

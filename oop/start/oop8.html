@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象学习开始啦7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>我是第1个div</div>
+    <div>我是第2个div</div>
+    <div>我是第3个div</div>
+    <div>我是第4个div</div>
+    <div>我是第5个div</div>
+    <div>我是第6个div</div>
+    <div>我是第7个div</div>
+    <div>我是第8个div</div>
+    <div>我是第9个div</div>
+    <div>我是第10个div</div>
+</body>
+<script>
+    window.onload = function () {
+        var divs = document.getElementsByTagName("div");
+        for (var i = 0; i < divs.length; i++) {
+            var div = divs[i];
+
+            //                function foo(j) {
+            //                    return function () {
+            //                        alert("我是第"+ (j+1) +"个div");
+            //                    }
+            //                }
+            //
+            //                var f = foo(i);
+            //
+            //                div.onclick = f;
+
+            div.onclick = function (j) {
+                return function () {
+                    alert("我是第" + (j + 1) + "个div");
+                }
+            }(i);
+        }
+
+        var arr = [{
+                name: '张三1'
+            },
+            {
+                name: '张三2'
+            },
+            {
+                name: '张三3'
+            },
+            {
+                name: '张三4'
+            }
+        ];
+
+        for (var i = 0; i < arr.length; i++) {
+
+            //            arr[i].sayHello = function () {
+            //                console.log(i);
+            //            }
+
+            arr[i].sayHello = (function () {
+                var j = i;
+                return function () {
+                    console.log(j);
+                }
+            }());
+        }
+
+        arr[0].sayHello();
+        arr[1].sayHello();
+        //        for (var j = 0; j < arr.length; j++) {
+        //
+        //            arr[j].sayHello();
+        //
+        //        }
+
+       
+    }
+</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>call和apply</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div,
+        p {
+            width: 500px;
+            height: 100px;
+            border: 10px solid pink;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <p></p>
+    <p></p>
+    <p></p>
+</body>
+<script>
+    var year = "88";
+
+    function sayyear(a, b) {
+        console.log(this.year + '吃了' + (a * b) + '个馒头');
+    }
+    sayyear(10, 5);
+    var obj = {
+        year: '号安徽'
+    }
+    //修改this指向obj
+    sayyear.apply(obj, [10, 20]); //可以通过apply修改this
+    sayyear.call(obj, 10, 30);
+    //使用call apply可以修改函数上下文
+    //函数.apply(要改变为的对象,[arg1,arg2]);
+    //函数.call(要改变为的对象,arg1,arg2);
+    //Function.prototype.apply();Function.prototype.call();
+
+    //call和apply的区别：
+    //第一个参数都是把this修改为的对象。
+    //第二个参数：call确定的参数，apply参数数组传递。
+
+    //使用案例  求一个数组的最大值用上下文调用模式
+    var arr = [1, 2, 3, 4, 90, 8, 9, 45];
+    var max = Math.max.apply(null, arr); //call()第一个参数为null 都表示为函数调用模式(即this指向window)
+    console.log(max, 'maxmax')
+    //将参数打印用'--'连接
+    function foo() {
+        var str = Array.prototype.join.apply(arguments, ['-']); //rhis对象变为arguments  arguments借用Array的join方法
+        return str;
+
+    }
+    var str = foo('a', 'b', 'c');
+    console.log(str, 'str');
+    var divs = document.getElementsByTagName('div');
+    var ps = document.getElementsByTagName('p');
+    var arr = [];
+    arr.push.apply(arr,divs);
+    arr.push.apply(arr,ps);
+    for (var i = 0; i < arr.length; i++) {
+        var ele = arr[i];
+        ele.style.backgroundColor = "yellow";
+    }
+</script>
+
+</html>

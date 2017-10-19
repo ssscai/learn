@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象学习开始啦6</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 600px;
+            height: 600px;
+            background: yellowgreen;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div>闭包</div>
+    <script>
+        window.onload = function () {
+            function f1() {
+                var num = 'sss';
+
+                function f2() {
+                    console.log(num)
+                }
+                f2();
+            }
+            f1();
+            //函数内的函数可以访问该函数中的变量
+            //但是我们需要在函数外部访问函数中的变量
+            function f3() {
+                var num = 123;
+                return num;
+            }
+            var x = f3();
+            console.log(x, 'xxxx');
+            var y = f3();
+            console.log(y, 'yy');
+            console.log(x === y);
+
+            function f4() {
+                var obj = {
+                    name: '张三',
+                    nickName: 'sss'
+                }
+                return obj;
+            }
+            var mm = f4();
+            var nn = f4();
+            console.log(mm == nn, 'mm=nn'); //每次重新创建对象，但是我们想要同一个东西；
+            //使用return关键字将函数内部的数据返回 这个数据只能被使用一次 
+            function foo() {
+                var kk = 123;
+
+                function inner(a) {
+                    kk = a;
+                    console.log(kk)
+                }
+                return inner;
+            }
+            foo();
+            var outinner = foo();
+            outinner('888'); //所以实现在函数外部访问该函数中的变量
+            //闭包的基本模式
+            //使用闭包获取多个数据
+            function more() {
+                var name = "张国荣";
+                var age = "66";
+                return [function () {
+                        return name;
+                    },
+                    function () {
+                        return age;
+                    }
+                ]
+            }
+            var getName = more();
+            console.log(getName[0]());
+            console.log(getName[1]());
+
+            function more1() {
+                var name = "李四";
+                var age = "33";
+                return {
+                    getName: function () {
+                        return name;
+                    },
+                    getAge: function () {
+                        return age;
+                    }
+                }
+            }
+            //返回对条数据 返回的是个对象
+            var fengzhuang = more1();
+            fengzhuang.getName();
+            fengzhuang.getAge();
+            console.log(fengzhuang.getName(), 'fengzhuang.getName();', fengzhuang.getAge(), 'fengzhuang.getAge();');
+            //闭包的作用：
+            function fooyong() {
+                var name = "闭包的作用";
+                var age = "123";
+                return {
+                    getName: function () {
+                        return name;
+                    },
+                    getAge: function () {
+                        return age;
+                    },
+                    setName: function (value) {
+                        name = value;
+                        return name;
+                    }
+                }
+            }
+            var haha = fooyong(); //接收返回值。
+            console.log(haha.getName(), 'haha.getName();');
+            console.log(haha.getAge())
+            console.log(haha.setName('张三张三'));
+            //创建一个私有空间，保护数据。外部想要访问数据，只能通过函数提供的方法
+        }
+    </script>
+    <!-- 变量提升是分块的 
+        1.变量和函数同名的时候
+            只提升函数，忽略变量名
+        2.函数同名的时候
+            都提升，但是后面的函数会覆盖前面的函数
+        3.函数表达式，只会提升变量名，不会提后面的函数
+        4.变量提升只会将变量和函数提升到当前作用域的最上方
+        ```js
+         funciton foo(){
+            var num =123;
+         }
+        ```
+        5.变量提升是分块 <script> 的 -->
+    <script>
+        foo();
+        function foo() {
+            console.log("第一个script标签内的函数")
+        };
+    </script>
+
+    <script>
+        foo()
+
+        function foo() {
+            console.log("第二个script标签内的函数")
+        }
+    </script>
+</body>
+
+</html>

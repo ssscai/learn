@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象学习开始啦5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 600px;
+            height: 600px;
+            background: yellowgreen;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div>作用域</div>
+    <script>
+        window.onload = function () {
+            for (var i = 0; i < 10; i++) {
+                var num = i;
+            }
+            console.log(num, 'num', i, 'i');
+            //es5中没有块级作用域
+            //2、词法作用域：就是代码写好的那一刻，变量的作用域就确定了，这种作用域就是所谓的词法作用域。
+            //与词法作用域相对的叫动态作用域，js中是词法作用域而不是动态作用域。
+            //js中唯一产生作用域的就是函数
+
+            var a = 123;
+
+            function f1() {
+                console.log(a);
+            }
+
+            function f2() {
+                var a = 456;
+                f1();
+            }
+            f2();
+
+            //4.词法作用域的规则
+            //函数允许访问函数外的数据.
+            //整个代码结构中只有函数可以限定作用域.
+            //作用域规则首先使用提升规则分析
+            //如果当前作用域中有了该变量, 就不考虑外面的同名变量
+
+            //作用域规则首先使用提升规则分析  变量和函数提升
+            //js代码执行分为两个步骤：1、预解析：js代码在预解析阶段会对var声明的变量名以及和function开头的语句块，进行提升操作
+            //2、执行
+            alert(fun1)
+            function fun1() {
+                console.log('first')
+            }
+            var fun1 = 333;
+            alert(fun1);
+
+
+            var num = 456;
+            function f1() {
+                console.log(num);
+                num = 10;
+            }
+            f1();//456
+            console.log(num);//10
+        }
+    </script>
+</body>
+
+</html>

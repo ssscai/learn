@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象学习开始啦7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+</body>
+<script>
+    window.onload = function () {
+        function foo() {
+            for (var i = 0; i < 10; i++) {
+                setTimeout(function () {
+                    console.log(i)
+                }, 0)
+            }
+        }
+        //foo(); //打印了10次10 js没有块级作用域 则打印的是全局的i
+        //改进1
+        function foo1() {
+            for (var i = 0; i < 10; i++) {
+
+                setTimeout((function () {
+                    console.log(i)
+                })(i), 0)
+            }
+        }
+        // foo1();
+        //改进2
+        function foo2() {
+            for (var i = 0; i < 10; i++) {
+                function foo(j) {
+                    return function () {
+                        console.log(j); //通过闭包访问这个数据
+                    }
+                }
+                var f = foo(i);
+                f();
+                // setTimeout((function () {
+                //     console.log(i)
+                // })(i), 0)
+            }
+        }
+        //foo2();
+        //改进3
+        function foo3() {
+            for (var i = 0; i < 10; i++) {
+                function foo(j) {
+                    return function () {
+                        console.log(j); //通过闭包访问这个数据
+                    }
+                }
+                var f = foo(i);
+                setTimeout(f, 0)
+            }
+        }
+        foo3();
+
+        //线程：一个线程一次只能处理一件事情，多个线程就可以多个事情同时进行
+        //JS是单线程的！
+
+        //JS中，分了三个任务
+        //1.渲染任务
+        //2.js的代码执行任务
+        //3.事件处理任务
+
+        //JS代码的执行顺序
+        //1.先把主任务（代码任务）执行完毕
+        //2.再去执行次要的任务(包括setTimeOut和setInterval中的回调函数中的代码)
+
+        //setTimeOut
+        //至少在指定的时间后执行指定回调函数
+        //因为要等主任务中的代码执行完毕之后，才回去检查，setTimeOut的回调函数，有没到执行时间
+    }
+</script>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>node01</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 600px;
+            height: 300px;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script type="text/javascript" src="./jquery-1.11.3.js"></script>
+    <script>
+        var calculator = (function () {
+            var add = function (v1, v2) {
+                return v1 + v2;
+            }
+            var substract = function (v1, v2) {
+                return v1 - v2;
+            }
+            var mutiply = function (v1, v2) {
+                return v1 * v2;
+            }
+            var divide = function (v1, v2) {
+                return v1 / v2;
+            }
+            return {
+                add: add,
+                substract: substract,
+                mutiply: mutiply,
+                divide: divide
+            }
+        })()
+    </script>
+    <script>
+        //开闭原则 对直接修改关闭、扩展开放   
+        var calculator = (function (cal) {
+            cal.mod = function (v1, v2) {
+                return v1 % v2;
+            }
+            return cal;
+
+        })(window.calculator || {});
+        console.log(calculator, 'calculatorcalculator')
+        window.m = '123';
+        var mk = (function (cal, $) {
+            console.log(cal, 'calcalcal', $('body'))
+        })(window.m, window.$);
+        //window.m,window.$依赖注入
+    </script>
+</body>
+
+</html>

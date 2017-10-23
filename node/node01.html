@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>node01</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 600px;
+            height: 300px;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        window.onload=function(){
+            //如何完美解决的命名冲突和文件依赖
+            //seajs默认有根目录 ，seajs文件所在的路径是默认的根目录，如果我们配置了根目录就用配置的
+            seajs.config({
+                //base根目录
+                base:'../sea-modules',
+            //alias:别名  外号 方便调用
+                alias:{
+                    'jquery':'详细路径'
+                }
+            });
+            //定义模块 exports 
+            define(function(require,exports,module){
+                //加载js  改变了js的引用方式
+                //module.exports=对外暴露的
+               //module.exports是一个空对象，用来打破封装性。返回想要暴露的属性和方法。
+                var Sp=require('./spinning').bar;
+            })
+        }
+    
+    </script>
+</body>
+
+</html>

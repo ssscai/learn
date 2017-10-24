@@ -1,0 +1,18 @@
+提高开发效率
+模板字符串  解构赋值  箭头函数  set map  promise class module(模块化成为一个标准)
+任务自动化（提高效率）：  scss-->css less-->css  编译 文件合并压缩  项目依赖 模块化之间依赖 如何编译  
+webpack：
+gulp? 只是个工具。grunt:项目复杂操作慢  gulp--流 快  利用gulp的很多插件 不同的task
+
+bable:js的编译器。bable的核心用法  如何编译的？webpack webpack-stream（webpack对gulp的支持）;
+http://blog.csdn.net/dai_jing/article/details/38087443
+node.js的express框架用的ejs的模板引擎  express -e .表示的是我要使用ejs模板引擎 .在当前目录执行
+
+命令行参数
+
+npm init自动创建package.json 有了这个文件可以使用npm装依赖包
+创建一个babel文件
+
+gulpfile.babel.js   
+
+--save-dev

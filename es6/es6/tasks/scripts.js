@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import gulpif from 'gulpif';
+import gulpif from 'gulp-if';
 import concat from 'gulp-concat';
 import webpack from "webpack";
 import gulpwebpack from "webpack-stream";
@@ -7,7 +7,7 @@ import named from "vinyl-named";
 import livereload from "gulp-livereload"; //自动刷新  热更新
 import plumber from "gulp-plumber";
 import rename from "gulp-rename";
-import gulify from "gulp-uglify";
+import uglify from "gulp-uglify";
 import {
     log,
     colors
@@ -26,7 +26,7 @@ gulp.task('scripts', function () {
             module: {
                 loaders: [{
                     test: /\.js$/,
-                    loader: 'babel'
+                    loader: 'babel-loader'
                 }]
             }
         }), null, function (err, stats) {

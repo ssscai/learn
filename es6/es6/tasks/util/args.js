@@ -1,4 +1,4 @@
-import yargs from 'yargs';//处理命令行工具的包
+import yargs from 'yargs';
 const args=yargs
 .option('production',{
     boolean:true,
@@ -25,3 +25,5 @@ const args=yargs
     describe:'server port'
 })
 .argv
+
+export default args;

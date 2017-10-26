@@ -16,3 +16,6 @@ npm init自动创建package.json 有了这个文件可以使用npm装依赖包
 gulpfile.babel.js   
 
 --save-dev
+
+
+es6新增块级作用域 let const var 

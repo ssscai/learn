@@ -1,3 +1,4 @@
+//node.js命令行的参数配置  定制化参数
 import yargs from 'yargs';
 const args=yargs
 .option('production',{

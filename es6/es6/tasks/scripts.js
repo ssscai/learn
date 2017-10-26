@@ -13,6 +13,9 @@ import {
     colors
 } from "gulp-util";
 import args from "./util/args";
+//pipe方法传入方法的是一个function，这个function作用无非是接受上一个流（stream）的结果，
+//并返回一个处理后流的结果(返回值应该是一个stream对象)。
+//注意的是这个函数只是一个包装，并不是会直接操作文件的。
 gulp.task('scripts', function () {
     return gulp.src(['app/js/index.js']) //打开
         //错误处理

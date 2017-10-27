@@ -89,6 +89,11 @@ var Test = function Test() {
 
 var test = new Test();
 document.body.innerHTML = test.a;
+// import './class/index1';
+// import './class/index2';
+// import './class/index3';
+//import './class/index4';
+//import './class/index5';
 
 /***/ }),
 /* 2 */
@@ -97,33 +102,15 @@ document.body.innerHTML = test.a;
 "use strict";
 
 
-function test() {
-    var a = 1;
-    var b = 2;
-    console.log(a, b);
-    for (var i = 1; i < 3; i++) {
-        console.log(i, 'i');
-    }
-    // let c=3;
-    // var c=3;
-}
-test();
-// 如何区分块作用域：大括号就是个块{}
-//es6是强制开启了严格模式 "use strict" 严格模式变量没有声明不能使用,否则报错
-function last() {
-    var PI = 3.1415926;
-    //PI=8;
-    console.log(PI);
-    var k = {
-        a: 1
-    };
-    k.b = 3;
-    console.log(k, 'kkkkkk');
-}
+{
+    var test = function test(x) {
+        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'world';
 
-last();
-//常量的含义是不能修改的，只读属性，不能修改.变量用const声明的时候必须赋值
-//存储的是数值 不能修改。存储的是对象的话 可以修改。所以使用const的时候一定要注意
+        console.log('默认值', x, y);
+    };
+
+    test('hello');
+}
 
 /***/ })
 /******/ ]);

@@ -19,3 +19,6 @@ gulpfile.babel.js
 
 
 es6新增块级作用域 let const var 
+
+函数默认值：
+箭头函数this是在函数定义的时候绑定的

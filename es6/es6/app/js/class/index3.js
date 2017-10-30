@@ -75,5 +75,5 @@ import 'babel-polyfill';
 {
     //String.raw  \n没有生效   String.raw 在斜杠前面进行了转义  前面又加了一个\
     console.log(String.raw`hi\n3`);
-    console.log(`h3\n3`)
+    console.log(`h3\n3`);
 }

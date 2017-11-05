@@ -20,13 +20,16 @@ let test = new Test();
 //import './class/index13';
 // import './class/index14';
 
-
+ import './class/index16';
 
 //import {AA,testAA,Student} from './class/index14';//es6模块化的写法 可以导出任何你想导出的模块
 //console.log('AA=',AA,'testAA=',testAA,Student)
 // import * as lesson  from './class/index14';
 // //*所有的 as别名
 // console.log(lesson);
-import lesson17  from './class/index14';
-console.log(lesson17)
+// import lesson17  from './class/index14';
+// console.log(lesson17)
 
+// import './class/index15';
+//import './class/reg';
+// import './class/reg1';

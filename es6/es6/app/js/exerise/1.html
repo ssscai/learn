@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 800px;
+            height: 400px;
+            background: yellowgreen;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let a = 3;
+            console.log(a);
+            //let a=8;不能重复定义
+            // Identifier 'a' has already been declared
+            let btns = document.getElementsByTagName('button');
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].onclick = function () {
+                    alert(i)
+                }
+            }
+            //const是个常量  不能修改 但是如果这是对象的话则可以修改
+            const pi = {
+                a: 1
+            }
+            console.log('pi1', pi.a);
+            pi.a = 'mkmikmni';
+            console.log('pi2', pi.a);
+            //箭头函数一二三
+            var aa = function () {};
+            var bb = () => {
+                alert('bb')
+            }
+
+            function cc() {
+                alert('cc')
+            }
+            var f = function (v) {
+                return v;
+            }
+            var f = v => v
+            console.log(f(5));
+            var sum = function (a, b) {
+                return a + b;
+            }
+            console.log(sum(3, 5));
+            var add = (a, b) => a + b;
+            console.log(add(5, 7));
+            let arr = [1, 2, 6, 8, 3, 7];
+            let arr2 = arr.filter(function (item) {
+                if (item % 2 == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            //alert(arr2);
+            let arr3 = [55, 60, 70, 34];
+            let arr4 = arr3.map(function (item) {
+                if (item < 60) {
+                    return '不及格';
+                } else {
+                    return '及格';
+                }
+            })
+            let arr5 = arr3.map(function (item) {
+                return item * 2
+            })
+            console.log(arr4, 'arr4');
+            console.log(arr5, 'arr5');
+            let arr6 = arr3.forEach(function (item, index) {
+                console.log(`第${index}个是${item}`)
+            })
+            let arr7 = [10, 20, 30].reduce(function (temp, item, index) {
+                console.log(temp, item, index)
+                return temp + item;
+            })
+            console.log(arr7);
+            let ss = [10, 20, 30];
+            let arr8 = ss.reduce(function (temp, item, index) {
+                if (index < ss.length - 1) {
+                    return temp + item;
+                } else {
+                    return (temp + item) / ss.length;
+                }
+            })
+            console.log(arr8, 'arr8');
+            class User {
+                constructor(name, age) {
+                    this.name = name;
+                    this.age = age;
+                }
+                show() {
+                    console.log('user show')
+                }
+            }
+            class VipUser extends User {
+                constructor(name, age, pass) {
+                    super(name, age);
+                    this.pass = pass;
+                }
+                login(){
+                    console.log('vipuser')
+                }
+            }
+            let vip=new VipUser('Zs','18','sss');
+            console.log(vip,'vipvip');
+            vip.show();
+            console.log(vip instanceof VipUser)
+            console.log(vip instanceof User);
+            let [a1,b1,c1]=[12,5,8];
+            console.log(a1,b1,c1)
+        }
+    </script>
+</head>
+
+<body>
+    <div></div>
+    <button>a</button>
+    <button>b</button>
+    <button>c</button>
+</body>
+
+</html>

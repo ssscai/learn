@@ -21,7 +21,7 @@ function last(){
     k.b=3
     console.log(k,'kkkkkk')
 }
-
+console.log('sssimi')
 last();
 //常量的含义是不能修改的，只读属性，不能修改.变量用const声明的时候必须赋值
 //存储的是数值 不能修改。存储的是对象的话 可以修改。所以使用const的时候一定要注意

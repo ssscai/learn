@@ -5,7 +5,7 @@ class Test {
 }
 let test = new Test();
 /********课堂代码练习开始*************/ 
-import './exerise/2017-11-09';
+//import './exerise/2017-11-09';
 /********课堂代码练习开始结束*************/ 
 
 // import './exerise/1';

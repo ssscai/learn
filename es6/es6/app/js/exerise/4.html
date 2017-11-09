@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <script>
+        window.onload=function(){
+            //yield暂时放弃自己执行的权利，等别人执行完再
+            //拿回自己的权利
+           function* show(a,b){
+               console.log(a,b);
+               let c=yield;
+               console.log(c,'ccc')
+               yield b;
+               yield a;
+               return 'ending'
+           }
+           let obj=show(5,7);
+           console.log(obj,'objobjobj');
+           console.log(obj.next('tttt'));
+           console.log(obj.next('sss'));
+           console.log(obj.next('sss'));
+           console.log(obj.next('sss'));
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="http://localhost:9088/socket.io/socket.io.js" charset="utf-8"></script>
+    <script>
+    let sock=io.connect('ws://localhost:9088/');
+
+    sock.emit('a', 1,2);
+    </script>
+  </head>
+  <body>
+
+  </body>
 </html>

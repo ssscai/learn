@@ -1,12 +1,6 @@
-"use strict";
+'use strict';
 
-require("babel-polyfill");
-
-var _m = require("./mod/m1");
-
-var _m2 = _interopRequireDefault(_m);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _m = require('./mod/m1');
 
 var a = 12;
 var b = 5;
@@ -19,4 +13,4 @@ arr.sort(function (json1, json2) {
 
 console.log(arr[0].a);
 
-console.log(_m2.default);
+console.log(_m.bb, 'bbb');

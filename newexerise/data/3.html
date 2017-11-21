@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //当 readyState 改变时，就会触发 onreadystatechange 事件。
+        //readyState 属性存有 XMLHttpRequest 的状态信息。
+        //4: 请求已完成，且响应已就绪
+        //xhr.status==	200: "OK"
+        window.onload = function () {
+            var obtn = document.getElementById('btn1');
+            var of1=document.getElementById('f1');
+            obtn.onclick = function () {
+                var formData=new  FormData();
+                formData.set('f1',of1);
+                console.log(formData);
+                var xhr=new XMLHttpRequest();
+                console.log(xhr,'xhr');
+                xhr.upload.onload=function(){
+                    console.log('上传完成')
+                }
+                xhr.upload.onprogress=function(ev){
+                    console.log(ev.loaded,ev.total)
+                }
+                xhr.open('post','3.php',true);
+                xhr.send(formData);
+                // var xhr = new XMLHttpRequest();
+                // xhr.open('get', '1.php?a=2&b=3', true);//true表示异步 默认就是异步  同步不支持
+                // xhr.send();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                       alert(xhr.status)
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="file" id="fl">
+    <input type="button" value="ajax请求" id="btn1">
+</body>
+
+</html>

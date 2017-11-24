@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饼图</title>
+    <style>
+        body{
+            background:yellowgreen;text-align: center;
+        }
+        #c1{
+            background:#ccc;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            //角度转化为弧度
+            function d2a(n){
+                return  n*Math.PI/180;
+            }
+            var Oc=document.getElementById('c1');
+            var gd=Oc.getContext('2d');//图形上下文 环境
+            let cx=400,cy=300,r=150;
+            let strAng=30,endAng=70;
+            let x=cx+r*Math.sin(strAng*Math.PI/180);
+            let y=cy-r*Math.cos(strAng*Math.PI/180);
+            
+            gd.moveTo(cx,cy)
+            gd.lineTo(x,y);
+            //#弧
+            gd.arc(cx,cy,r,d2a(strAng-90),d2a(endAng-90),false)
+
+            gd.closePath();
+            gd.stroke();
+            gd.fillStyle="yellowgreen";
+            gd.fill();
+        
+        }
+    </script>
+</head>
+<body>
+    <canvas id="c1" width="600" height="800">
+        你的浏览器不支持canvas!
+    </canvas>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装饼图</title>
+    <style>
+        body {
+            background: yellowgreen;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #ccc;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //角度转化为弧度
+            function d2a(n) {
+                return n * Math.PI / 180;
+            }
+            var Oc = document.getElementById('c1');
+            var gd = Oc.getContext('2d'); //图形上下文 环境
+            let cx = 400,
+                cy = 300,
+                r = 150;
+            
+            // gd.strokeText('AGCB',0,60);
+            // gd.fillText('DEFG',0,190);
+            function pie(strAng,endAng,color,txt) {
+                gd.beginPath();
+                let x = cx + r * Math.sin(strAng * Math.PI / 180);
+                let y = cy - r * Math.cos(strAng * Math.PI / 180);
+                gd.moveTo(cx, cy)
+                gd.lineTo(x, y);
+                //#弧
+                gd.arc(cx, cy, r, d2a(strAng - 90), d2a(endAng - 90), false)
+                gd.closePath();
+                gd.fillStyle = color;
+                gd.fill();
+                // gd.strokeText
+                gd.font=" 14px 宋体";
+                gd.strokeText(txt,(x+cx)/2,(y+cy)/2)
+                gd.stroke();
+            }
+            //1.数据
+            let data=[581,273,1750,201];
+            let  colors=['pink','blue','yellow','red'];
+            let txts=['煤炭','风力','电力','其它']
+            //2.求和
+            let sum=data.reduce(function(tem,item,index){
+               return  tem+item
+            })
+            console.log(sum,'sum')
+            //3.数据占比
+           let angs=data.map(function(item){
+                return 360*item/sum;
+            })
+            //4.画
+            let last=0;
+            angs.forEach(function(ang,index){
+                pie(last,last+ang,colors[index],txts[index]);
+                last=last+ang;
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="600" height="800">
+        你的浏览器不支持canvas!
+    </canvas>
+</body>
+
+</html>

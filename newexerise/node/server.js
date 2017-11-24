@@ -10,7 +10,7 @@ let db = mysql.createPool({
     port: '3306',
     user: 'root',
     password: 'root',
-    database: '20171116',
+    database: '20171117',
     maxConnections: '20'
 });
 let httpServer = http.createServer(function (req, res) {
@@ -81,9 +81,43 @@ let httpServer = http.createServer(function (req, res) {
                 }
             })
         }
-    } else if (req.url == 'login') {
+    } else if (pathname== '/login') {
         //请求登录接口
-        console.log('请求了登录')
+        console.log('请求了登录');
+        let {
+            username,
+            pass
+        } = query;
+        //校验数据
+
+            //取数据
+            db.query(`SELECT ID from user_table WHERE username='${username}'`,function(err,data){
+                if(err){
+                    res.write(JSON.stringify({
+                        code:1,
+                        msg:'数据库有错'
+                    }))
+                    res.end();
+                }else if(data.length==0){
+                    res.write(JSON.stringify({
+                        code:1,
+                        msg:"用户名不存在"
+                    }))
+                    res.end();
+                }else {
+                    db.query(`UPDATE user_table SET online=1 WHERE ID=${data[0].ID}`, err=>{
+                        if(err){
+                          res.write(JSON.stringify({code: 1, msg: '数据库有错'}));
+                          res.end();
+                        }else{
+                          res.write(JSON.stringify({code: 0, msg: '登陆成功123'}));
+                          res.end();
+                        }
+                      });
+                }
+                
+            })
+        
     } else {
 
         fs.readFile(`www${req.url}`, (err, data) => {

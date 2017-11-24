@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background:yellowgreen;text-align: center;
+        }
+        #c1{
+            background:#ccc;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var Oc=document.getElementById('c1');
+            var gd=Oc.getContext('2d');//图形上下文 环境
+           //1.路径版rect(x,y,w,h)
+           //gd.rect(100,100,400,300);
+           // gd.stroke();
+           //2、直接出图形 strokeRect fillRect()
+        //    gd.strokeStyle='red'
+        //    gd.strokeRect(100,100,400,300);
+        //    gd.fillStyle="blue";
+        //    gd.fillRect(100,100,400,300)
+           // 弧  路径操作gd.arc(cx,cy,r,starArg,endArg,true) 最后一个参数表示是否是逆时针
+           //角度到弧度的转化：1角度=PI/180弧度
+           gd.arc(400,300,150,0*Math.PI/180,270*Math.PI/180,false);
+           gd.stroke();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="c1" width="600" height="800">
+        你的浏览器不支持canvas!
+    </canvas>
+</body>
+</html>

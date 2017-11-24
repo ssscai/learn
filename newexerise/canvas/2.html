@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background:yellowgreen;text-align: center;
+        }
+        #c1{
+            background:#ccc;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            //画两条线
+            var Oc=document.getElementById('c1');
+            var gd=Oc.getContext('2d');//图形上下文 环境
+            gd.moveTo(100,100);
+            gd.lineTo(300,500);
+            gd.strokeStyle="red"
+            gd.stroke();
+            gd.beginPath();//清除之前所有的路径
+            gd.moveTo(200,400);
+            gd.lineTo(600,200);
+            gd.lineTo(300,500);
+            //gd.lineTo(200,400);
+            gd.closePath();//闭合路径
+            gd.strokeStyle='blue';
+            gd.lineWidth=10;
+            gd.stroke();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="c1" width="600" height="800">
+        你的浏览器不支持canvas!
+    </canvas>
+</body>
+</html>

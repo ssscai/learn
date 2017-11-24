@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: yellowgreen;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #ccc;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oC1=document.getElementById('c1');
+            var gd=oC1.getContext('2d');
+            var laxtX,lastY;
+            oC1.onmousedown=function(ev){
+                laxtX=ev.offsetX;
+                lastY=ev.offsetY;
+                oC1.onmousemove=function(ev){
+                    gd.beginPath();
+                    gd.moveTo(laxtX,lastY);
+                    gd.lineTo(ev.offsetX,ev.offsetY);
+                    laxtX=ev.offsetX;
+                    lastY=ev.offsetY;
+                    gd.stroke();
+                }
+                oC1.onmouseup=function(){
+                    oC1.onmousemove=null;
+                    oC1.onmouseup=null;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="600" height="800">
+        你的浏览器不支持canvas!
+    </canvas>
+</body>
+
+</html>

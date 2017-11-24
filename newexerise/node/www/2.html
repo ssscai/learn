@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+  <script src="./jquery.js"></script>
+</head>
+
+<body>
+    用户名：
+    <input type="text" id="user">
+    <br> 密码：
+    <input type="text" id="pass">
+    <input type="button" value="注册" id="btn1">
+    <input type="button" value="登录" id="btn2">
+      <script>
+          $(function(){
+                $('#btn1').on('click',function(){
+                    $.ajax({
+                        url:'./reg',
+                        dataType:'json',
+                        data:{
+                            user:$('#user').val(),
+                            pass:$('#pass').val()
+                        },
+                        success:function(res){
+                            console.log(res);
+                            if(res.code){
+                               
+                            }else{
+                                
+                            }
+                        },
+                        error:function(err){
+                            console.log('网络不给力')
+                        }
+                    })
+                })
+                $('#btn2').on('click',function(){
+                    $.ajax({
+                        url:'./login',
+                        dataType:'json',
+                        data:{
+                            user:$('#user').val(),
+                            pass:$('#pass').val()
+                        },
+                        success:function(res){
+                            console.log(res);
+                            if(res.code){
+                               console.log(res.code,res.msg)
+                            }else{
+                                console.log(res.code,res.msg)
+                            }
+                        },
+                        error:function(err){
+                            console.log('网络不给力')
+                        }
+                    })
+                })
+          })
+        </script>
+</body>
+
+</html>

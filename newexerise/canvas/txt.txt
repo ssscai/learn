@@ -1,0 +1,10 @@
+canvas:画布，什么东西都能画，性能高  大型的动画  游戏 只能用宽高属性改变大小
+getContext('2d') 上下文
+路径操作只是个范围 
+1，用 路径圈起来一块区域
+2、stroke()
+3、beginPath()
+4、closePath();
+矩形：strokeRect fillRect
+弧：圆的一部分 arc() 路径操作
+

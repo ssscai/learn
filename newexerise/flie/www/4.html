@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上传进度</title>
+    <style>
+    .box{
+        width:400px;height:40px;background:#ccc;
+    }
+    .child{
+        width:0px;height:100%;background:yellowgreen;
+    }
+    </style>
+    <script>
+        window.onload=function(){
+            let oFile1=document.getElementById('file1');
+            let oBtn1=document.getElementById('btn1');
+            oBtn1.onclick=function(){
+               let oAjax=new XMLHttpRequest();
+                /********************上传进度要放在open之前*********************************/ 
+               oAjax.upload.onerror=function(){
+                   console.log('onerror')
+               }
+               oAjax.upload.onload=function(){
+                   console.log('onload')
+               }
+               oAjax.upload.onprogress=function(ev){
+                   console.log('onprogress');
+                   console.log(100*(ev.loaded/ev.total).toFixed(2)+'%');
+                   var pencenter=100*(ev.loaded/ev.total).toFixed(2)+'%';
+                   let oChild=document.querySelector('.child');
+                   oChild.style.width=pencenter;
+               }
+            /*****************************************************/ 
+               oAjax.open('POST','/upload',true);
+               let formData=new FormData();
+               Array.from(oFile1.files).forEach(function(file){
+                return formData.append('f1',file)
+               })
+               console.log(formData,'formData');
+               oAjax.send(formData);
+               oAjax.onreadystatechange=function(){
+                   if(oAjax.readyState==4){
+                        console.log(oAjax.status)
+                   }
+               }             
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="file" id="file1" multiple><br/>
+    <input type="button"  value="上传" id="btn1">
+    <div class="box">
+        <div class="child"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #000;
+        }
+
+        #c1 {
+            background: #fff;
+        }
+        /* #video{
+            display:none;
+        } */
+    </style>
+    <script>
+        window.onload = function () {
+            let oBtn1 = document.getElementById('btn1');
+            let oBtn2 = document.getElementById('btn2');
+            let oBtn3 = document.getElementById('btn3');
+            let oC1 = document.getElementById('c1');
+            let oVideo = document.getElementById('video')
+            let gb = oC1.getContext('2d');
+            // oBtn1.onclick=function(){
+            //     gb.drawImage(oVideo,0,0)
+            // }
+            // setInterval(function(){
+            //     gb.drawImage(oVideo,0,0)
+            // },1)
+            function next() {
+                requestAnimationFrame(function () {
+                    //画
+                    gb.drawImage(oVideo, 0, 0);
+                    //取 imageData.data
+                    let imageData =gb.getImageData(0, 0, oC1.width, oC1.height);
+                    for (let r = 0; r < oC1.height; r++) {
+                        for (let c = 0; c < oC1.width; c++) {
+                            let color = (imageData.data[(r * oC1.width + c) * 4] + imageData.data[(r * oC1.width + c) *4 + 1] + imageData.data[(r * oC1.width + c) * 4 + 2])/3;
+                                imageData.data[(r * oC1.width + c) * 4] = imageData.data[(r * oC1.width + c) * 4 + 1] =
+                                imageData.data[(r * oC1.width + c) * 4 + 2] = color
+                        }
+                    }
+                    //重新画
+                    gb.putImageData(imageData, 0, 0)
+
+                    //每当请求一帧的时候紧接着请求下一帧
+                    next();
+                })
+
+            }
+            next();
+            oBtn2.onclick = function () {
+                oVideo.pause();
+            }
+            oBtn3.onclick = function () {
+                oVideo.play();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" value="过去" id="btn1">
+    <br/>
+    <input type="button" value="暂停" id="btn2">
+    <br/>
+    <input type="button" value="播放" id="btn3">
+    <br/>
+    <video src="a.mp4" controls id="video"></video>
+    <canvas id="c1" width="636" height="360"></canvas>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+如何上传多个文件？append();
+文件后缀对计算机来说没有意义。文件的扩展名是给人看的。计算机不管这个扩展名。
+文件信息不是二进制  
+文件内容是二进制
+浏览器和服务器之间所有的通信过程是由头来控制的
+
+上传进度：
+XMLHttpRequestUpload {onloadstart: null, onprogress: null, onabort: null, onerror: null, onload: null, …}onabort: nullonerror: nullonload: nullonloadend: nullonloadsta
+XMLHttpRequestUpload {onloadstart: null, onprogress: null, onabort: null, onerror: null, onload: null, …}
+onabort
+onerror
+onload//上传完成的时候
+null
+onloadend
+onloadstart
+onprogress //当进度发生变化的时候
+ontimeout //超时
+
+拖拽上传
+
+canvas 像素级的操作 getImageData()  putImageData 
+canvas+video:
+//这个又浏览器决定在合适的时机进行请求一帧
+requestAnimationFrame(function(){})
+
+canvas
+图像上传至服务器 ？toDataURL==>base64字符串  
+图像处理
+下载图片

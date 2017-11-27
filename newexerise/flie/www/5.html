@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖拽上传</title>
+    <style>
+        .box{
+            width:600px;height:300px;background:#ccc;color:red;
+            line-height: 300px;text-align:center;border:1px solid #000;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            let oBox=document.getElementsByClassName('box')[0];
+            var oM=document.getElementById('m1')
+            oBox.addEventListener('dragenter',function(){
+                this.innerHTML='请松手'
+            },false);
+            oBox.addEventListener('dragleave',function(){
+                this.innerHTML='拖到这里请松手'
+            },false)
+            oBox.addEventListener('dragover',function(ev){
+                ev.preventDefault();
+            },false)
+            oBox.addEventListener('drop',function(ev){
+                ev.preventDefault();
+                let formData=new FormData();
+                Array.from(ev.dataTransfer.files).forEach(function(file){
+                    formData.append('f2',file)
+                })
+              var oAjax=new XMLHttpRequest();
+                oAjax.upload.onprogress=function(ev){
+                    var str=Math.floor(100*(ev.loaded/ev.total));
+                    oM.value=str;
+                }
+                oAjax.upload.onload=function(){
+                    console.log('onload')
+                }
+                oAjax.open('POST','/upload',true);
+                oAjax.send(formData);
+                //服务器返回的信息
+                oAjax.onreadystatechange=function(){  
+                    if(oAjax.readyState==4){
+                        console.log(oAjax.status)
+                    }
+                }
+            },false);
+            //ajax部分
+           
+        }
+    </script>
+</head>
+<body>
+    <meter style="width:400px;" value="0" min="0" max="100" id="m1"></meter>
+    <div class="box">
+        拖到这里请松手
+    </div>
+
+</body>
+</html>

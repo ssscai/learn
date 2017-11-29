@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+        <!-- 我自己使用浮动也实现了三栏式布局：左边盒子左浮动，右边盒子右浮动，中间盒子利用 margin-left 和 margin-right 来为左右盒子留位置，同时父盒子设置 overflow: auto; 来避免子盒子溢出。 -->
+    <!-- 浮动实现的 HTML 结构 -->
+    <div class="container">
+            <div class="left">左边栏</div>
+            <div class="right">右边栏</div>
+            <!-- 中间的 div 必须写在最后面 -->
+            <div class="middle">中间弹性区</div>
+        </div>
+</body>
+</html>

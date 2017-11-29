@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sss圆环</title>
+    <style>
+        body{
+            background:#ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+    <script>
+        window.onload=function(){
+            var c1=document.getElementById('c1');
+            var gb=c1.getContext('2d');         
+            function Drawcircles(circles_center_x,circles_center_y,radiusx,radiusy){
+                gb.moveTo(circles_center_x+radiusx,circles_center_y)
+                gb.arc(circles_center_x,circles_center_y,radiusx,0,2*Math.PI,false);
+                gb.moveTo(circles_center_x+radiusy,circles_center_y)
+                gb.arc(circles_center_x,circles_center_y,radiusy,0,2*Math.PI,false);
+                gb.strokeStyle="red"
+                gb.stroke();
+            }
+            Drawcircles(300,300,50,100)
+        }
+    </script>
+</body>
+</html>

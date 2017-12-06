@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;padding:0;list-style: none;
+        }
+        .wrap{
+            width:200px;height:500px;border:1px solid #000;margin:0 auto;
+            overflow: hidden;
+        }
+        .continer{
+            width:800px;height:800px;background:-webkit-linear-gradient(left top, red, green)
+        }
+    </style>
+    <script src="./iscroll.js"></script>
+    <script>
+        window.onload=function(){
+            let iscroll=new IScroll('.wrap',{
+                bounce:false
+            })
+            //bounce:是否允许超过实际位置反弹
+            console.log(iscroll.options,'iscroll')
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="continer">
+
+        </div>
+    </div>
+</body>
+</html>

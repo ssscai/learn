@@ -1,0 +1,6 @@
+url一共提供了三个方法，分别是url.parse();　　url.format();　　url.resolve();
+parse这个方法可以将一个url的字符串解析并返回一个url的对象.
+第二个参数（可省）传入一个布尔值，默认为false，为true时，返回的url对象中，query的属性为一个对象.
+format这个方法是将传入的url对象编程一个url字符串并返回
+resolve这个方法返回一个格式为"from/to"的字符串，在宝宝看来是对传入的两个参数用"/"符号进行拼接，并返回
+// querystring 模块用于实现url参数字符串与参数对象的相互转换

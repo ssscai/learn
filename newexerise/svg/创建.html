@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态创建一条线</title>
+    <script>
+        window.onload=function(){
+            let oBtn=document.getElementById('btn');
+            let oSvg=document.getElementById('svg');
+            oBtn.onclick=function(){
+                let oL=document.createElementNS('http://www.w3.org/2000/svg','line');
+                //oL.setAttribute({x1: 100, y1: 100, x2: 400, y2: 300}) svg不支持对象的写法
+                oL.setAttribute('x1','500')
+                oL.setAttribute('y1','800')
+                oL.setAttribute('x2','80')
+                oL.setAttribute('y2','200')
+                oL.setAttribute('stroke-width','20')
+                oL.style.stroke='#000';
+                oSvg.appendChild(oL);
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="动态创建一条线" id="btn"><br/>
+    <svg width="600" height="800" id="svg">
+
+    </svg>
+</body>
+</html>

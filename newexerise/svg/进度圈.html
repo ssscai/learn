@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #progress{
+            stroke-dasharray: 100px;
+            /* 属性指定了dash模式到路径开始的距离 */
+            stroke-dashoffset: 100px;
+            animation: progressAnimation 600ms linear infinite;
+        }
+        @keyframes progressAnimation{
+            from{
+                stroke-dashoffset:100px;
+            }
+            to{
+                stroke-dashoffset:300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg width="400" height="600" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <circle id="backdrop" cx="120" cy="120" r="90" stroke="#000" stroke-width="3"  style="fill:none" />   
+        <circle id="progress" cx="120" cy="120" r="90" stroke="red" stroke-width="4"   style="fill:none" />   
+    </svg>
+</body>
+</html>

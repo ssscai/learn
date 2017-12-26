@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:800px;height:600px;border:1px solid black; margin:0 auto;
+        }
+    </style>
+    <script src="echarts.js"></script>
+    <script>
+        window.onload=function(){
+            var oBox=document.getElementById('box');
+            var option = {
+                color: ['#3398DB','yellow'],
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend:{
+                    data:['男','女'],
+                    right:0,
+                    top:'20%',
+                    orient:'vertical'
+
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                // x轴的数据
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : ['11', '22', '33', '44', '55', '66', '77'],
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'男',
+                        type:'bar',
+                        barWidth: '40%',
+                        data:[10, 52, 200, 334, 390, 330, 220]
+                    },
+                    {
+                        name:'女',
+                        type:'bar',
+                        barWidth: '40%',
+                        data:[10, 52, 200, 334, 390, 330, 220]
+                    }
+                ],
+                animationEasing: 'elasticOut',
+                animationDelayUpdate: function (idx) {
+                    return idx * 15;
+                }
+            };
+
+
+            var charts=echarts.init(oBox);
+            charts.setOption(option)
+
+        }
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

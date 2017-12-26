@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            let oL=document.getElementById('line1');
+            oL.onclick=function(){
+                //获取某个属性getAttribute 设置属性setAttribute 
+                alert(this.getAttribute('stroke-linecap'))
+                this.setAttribute('stroke-width','50')
+            }
+            // oL.addEventListener('click',function(){
+            //     this.style.stroke='yellow';
+            // },false);
+            // document.body.onmouseover=function(ev){
+            //     console.log(ev.target.tagName)
+            //     if(ev.target.tagName=='line'){
+            //         ev.target.style.stroke="pink"
+            //     }
+            // }
+        }
+    </script>
+</head>
+<body>
+    <svg width="800" height="600">
+        <!-- strokelinecap属性定义不同类型的开放路径的终结,strokedasharray属性用于创建虚线： -->
+        <line x1="90" y1="50" x2="100" y2="880" stroke="red" stroke-width="10" stroke-linecap="round"  id="line1" />
+        <line x1="60" y1="80" x2="100" y2="880" stroke="blue" stroke-linecap="round"  stroke-dasharray="5,5" />
+    </svg>
+</body> 
+</html>

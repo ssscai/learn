@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 弧度转化为角度
+        function d2a(n) {
+            return n * Math.PI / 180;
+        }
+        window.onload = function () {
+            let oSvg = document.getElementById('svg1');
+            let cx = 400,
+                cy = 300,
+                r = 200,
+                a = 30,
+                b = 160;
+                pie(30,160,'red')
+            //求坐标
+        function pie(start,end,color){
+            let x1 = cx + r * Math.sin(d2a(start));
+            let y1 = cy + r * Math.cos(d2a(start));
+
+            let x2 = cx + r * Math.sin(d2a(end));
+            let y2 = cy + r * Math.cos(d2a(end));
+            //生成元素
+            let oPath=document.createElementNS('http://www.w3.org/2000/svg','path');
+            oPath.style.stroke=color;
+            oPath.style.fill='yellowgreen';
+            oPath.setAttribute('d',`
+            M ${cx} ${cy}
+            L ${x1} ${y1}
+            A ${r} ${r} 0 ${end-start>180?1:0} 0 ${x2} ${y2}
+            Z
+            `)
+            oSvg.appendChild(oPath)
+        }
+
+        }
+    </script>
+</head>
+
+<body>
+    <svg width="800" height="600" id="svg1">
+
+    </svg>
+</body>
+
+</html>

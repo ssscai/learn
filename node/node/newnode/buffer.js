@@ -16,3 +16,11 @@ var buf6=buf1+buf2;
 var buf7=Buffer.concat([buf1,buf2])
 console.log(buf6,'sss')
 console.log(buf7,'sss');
+var fs=require('fs');
+fs.readFile('url.js',function(err,data){
+    if(err){
+        console.log('error')
+    }else{
+        console.log(data,'data')
+    }
+})

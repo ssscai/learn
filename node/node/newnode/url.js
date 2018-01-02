@@ -1,7 +1,7 @@
 var url=require('url');
 var  str="http://user:pass@host.com:8080/p/a/t/h?query=string#hash";
-console.log(url.parse(str));
-console.log(url.parse(str,true));
+// console.log(url.parse(str));
+// console.log(url.parse(str,true));
 // url.parse(str)={
 //     protocol: 'http:',
 //     slashes: true,
@@ -37,6 +37,13 @@ var url_1 = url.format({
     pathname: '/p/a/t/h',
     search: 'query=string'
 });
-console.log(url_1);
+//console.log(url_1);
 var url_2 = url.resolve('http://www.example.com/foo/bar', '../baz');
-console.log(url_2)
+///console.log(url_2);
+var str3="https://shanghai.anjuke.com/ajax/autocomplete/?callback=jQuery1113006422026810922388_1514448895748&kw=&city_id=11&app_id=1&from=2&num=10&_=1514448895749"
+console.log(url.parse(str3));
+// console.log(url.parse(str3,true))
+var querystring=require('querystring');
+var mimi="a=123&b=4565&c=ssss"
+var st=querystring.parse(url.parse(str3).query);
+console.log(st,'ststst')

@@ -1,0 +1,19 @@
+const fs=require('fs');
+fs.writeFile('./1.txt','ddd',function(err){
+    console.log(err)
+})
+fs.writeFile('./1.txt','ttt',function(err){
+    console.log(err)
+})
+fs.appendFile('./1.txt','liki',function(err){
+    console.log(err)
+})
+fs.appendFile('./1.txt','mmmm',function(err){
+    console.log(err)
+})
+fs.appendFile('./1.txt','liki1',function(err){
+    console.log(err)
+})
+fs.appendFile('./1.txt','mmmm2',function(err){
+    console.log(err)
+})

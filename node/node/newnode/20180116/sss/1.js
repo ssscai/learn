@@ -3,5 +3,6 @@ const server=new Koa();
 server.listen(8080);
 //Context 简写ctx 表示一次对话的上下文（包括http请求和响应)
 server.use(function(ctx){
+    //ctx.response.body属性就是发送给用户的内容
     ctx.response.body='hello world'
 })

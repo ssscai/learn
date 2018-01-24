@@ -1,0 +1,11 @@
+koa:数据：
+cookie可以直接使用cookie    ctx.cookies ctx.cookies.get ctx.cookies.set
+
+   // cookie是子级可以拿父级的   父级不能拿子级的  path路径 一般不写  domain域名
+cookie  子目录能访问父目录的cookie  反之不可以
+http://xxxx/aaa  http://xxxx/aaa/bbb
+
+domain域名 ：子域名可以访问父级
+
+
+oAuth:单点登录  登录后需要保存用户的状态

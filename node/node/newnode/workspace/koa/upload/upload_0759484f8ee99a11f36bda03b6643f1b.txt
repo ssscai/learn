@@ -1,0 +1,205 @@
+
+聚合页：http://baituan.pptv.com/pg_2017tuan
+女团页：http://baituan.pptv.com/pg_detail?familyId=261
+
+
+
+http://live.pptv.com/tuan
+
+http://live.pptv.com/tuan/pg_detail?familyId=1
+
+左侧：
+
+团体：http://event-api.longzhu.com/topic/girlgroup/rank/group?dayKind=3
+
+单体：http://event-api.longzhu.com/topic/girlgroup/rank/single?familyId=3&dayKind=1
+
+右侧：贡献榜单：
+
+
+https://ke.qq.com/user/index/index.html#cid=229644&tid=100270975&term_id=100270975
+
+
+聚合页左侧返回的数据结构：
+{
+apiVersion: "1.0",
+lastupdate: 1507614124,
+data: {
+items: [
+{
+name: "悠远传媒",
+avatar: "http://yoyofile.plures.net/FosiLHLXXzgOPcfw5dyfYZSjrbaW-0-119-213-167",
+score: "10999329",
+familyId: "261"
+},
+{
+name: "成都东唐文化传播有限公司",
+avatar: "",
+score: "9998340",
+familyId: "332"
+}
+]
+}
+}
+
+
+聚合页右侧返回的数据结构：
+[
+{
+count: 188888,
+userId: 32620951,
+userName: "uujwjwjwj",
+avatar: "http://q.qlogo.cn/qqapp/100360418/2D9E274742168F50A91FB80D1614DA25/100",
+grade: 17,
+newGrade: 55
+},
+{
+count: 104000,
+userId: 7540694,
+userName: "yjinglee",
+avatar: "http://q.qlogo.cn/qqapp/100360418/34867FF3CE7D91D284980EEAE6B61BAE/100",
+grade: 14,
+newGrade: 37
+},
+{
+count: 57200,
+userId: 40404438,
+userName: "超管刚回来啦",
+avatar: "http://q.qlogo.cn/qqapp/100360418/7728CD02B09ED4F6E529C68E93DD3728/100",
+grade: 13,
+newGrade: 31
+}
+]
+
+
+女团页左侧返回的数据：
+data: {
+items: [
+{
+avatar: "http://img2.plures.net/users/avatar/068/288/514/68288514/69bd0762ee4e81a9685d4295a6c5b9e1.png",
+domain: "m195555",
+name: "来爷有故事",
+roomId: "2094510",
+userId: "68288514",
+score: "999989",
+isLive: false
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/241222111FFB6ECBF37524CD5C2CA543/40",
+domain: "2431344",
+name: "qq_241222111ffb",
+roomId: "2102811",
+userId: "60022446",
+score: "999979",
+isLive: false
+},
+{
+avatar: "http://img2.plures.net/users/avatar/067/733/384/67733384/cbf6e8da0801ea9e165e97d66703fb8c.png",
+domain: "2431388",
+name: "weixin_2017oipavuagdous",
+roomId: "2102855",
+userId: "67733384",
+score: "999969",
+isLive: false
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/922BEE6F4DA164BBC7352C2DDA506DE5/40",
+domain: "2431454",
+name: "qq_2017922bee6f4da1",
+roomId: "2102920",
+userId: "67490175",
+score: "999959",
+isLive: false
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/5351900D26992F089086A4E495CF86BE/40",
+domain: "2431484",
+name: "qq_5351900d2699",
+roomId: "2102950",
+userId: "59789664",
+score: "999949",
+isLive: false
+},
+{
+avatar: "http://img2.plures.net/users/avatar/052/770/965/52770965/ec29fe2b1d130f23a72b679af4adbff3.jpg",
+domain: "2431538",
+name: "Putao",
+roomId: "2103004",
+userId: "52770965",
+score: "999939",
+isLive: false
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/1DF876AE0357E91CC7604FFD1F7635C4/100",
+domain: "2431627",
+name: "猫仙大人",
+roomId: "2103093",
+userId: "43516678",
+score: "999929",
+isLive: false
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/1DB9BD839ABD8BD474710FA750BDD0B7/40",
+domain: "2431647",
+name: "qq_20171db9bd839abd",
+roomId: "2103113",
+userId: "67405700",
+score: "999919",
+isLive: false
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/D8B553166DA099CEE031DAB4F2D93453/40",
+domain: "2431911",
+name: "滴滴滴",
+roomId: "2103376",
+userId: "44323095",
+score: "999909",
+isLive: true
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/9D25AF6AD06C26D732281FE0433F0D73/100",
+domain: "2432074",
+name: "夏安安”",
+roomId: "2103539",
+userId: "43554431",
+score: "999899",
+isLive: false
+},
+{
+avatar: "http://q.qlogo.cn/qqapp/100360418/F81E381E17F5CABA90160467ADA0ECFF/40",
+domain: "2432143",
+name: "qq_2017f81e381e17f5",
+roomId: "2103607",
+userId: "69355309",
+score: "999889",
+isLive: false
+}
+]
+
+女团页右侧：
+[
+{
+count: 188888,
+userId: 32620951,
+userName: "uujwjwjwj",
+avatar: "http://q.qlogo.cn/qqapp/100360418/2D9E274742168F50A91FB80D1614DA25/100",
+grade: 17,
+newGrade: 55
+},
+{
+count: 52000,
+userId: 7540694,
+userName: "yjinglee",
+avatar: "http://q.qlogo.cn/qqapp/100360418/34867FF3CE7D91D284980EEAE6B61BAE/100",
+grade: 14,
+newGrade: 37
+},
+{
+count: 52000,
+userId: 40404438,
+userName: "超管刚回来啦",
+avatar: "http://q.qlogo.cn/qqapp/100360418/7728CD02B09ED4F6E529C68E93DD3728/100",
+grade: 13,
+newGrade: 31
+}
+]

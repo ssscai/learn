@@ -1,0 +1,23 @@
+v-html:原样输出
+{{}}转义输出
+
+computed每个属性都有get set两个方法
+computed与data不能重名 否则就乱了
+vue中_a _b内部的私有的变量或者函数
+
+计算属性：受控制的访问.简单可缓存.
+v-cloak
+前端路由：
+多视图就是多个<router-view></router-view>
+
+
+组件：在vue中组件必须是个实体可以渲染出来的
+
+
+vue.js ：前端界面框架
+
+数据渲染/数据同步
+组件化/模块化
+路由。ajax。数据流
+
+Vue实例对象

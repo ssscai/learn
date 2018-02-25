@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <script>
+    window.onload=function(){
+        var  obj={
+            totals:{
+                'shiping':{
+                    title:'运费',
+                    value:'333',
+                    code:'ttt'
+                },
+                'sub_total':{
+                    title:'商品金额',
+                    value:'444',
+                    code:'ssss'
+                },
+                'total':{
+                    title:'实际支付',
+                    value:'555',
+                    code:'ddd'
+                }
+            }
+        }
+        // $(".total_price").html(); 
+        var data=obj.totals;
+        for(var valiable in data){
+            console.log(data[valiable]['title']);
+            //console.log(data[valiable]['xxxx']);
+           var stst='<div class="col-sm-2">'+ data[valiable]['title'] +'</div><div class="col-sm-2" id="'+
+            data[valiable]['code']+'">'+data[valiable]['value']+'</div>'
+            console.log(stst);
+            $('.box').append(stst)
+        }
+    }
+    </script>
+</head>
+<body>
+   <div class="box">
+
+   </div>
+</body>
+</html>

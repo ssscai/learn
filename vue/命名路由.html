@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        window.onload=function(){
+            // 命名路由是当路由层次比较深的时候使用
+            // 1.声明路由
+            let r1=new VueRouter({
+                routes:[
+                    {
+                        path:'/user/:userId',
+                        name:'usr',
+                        component:{
+                            template:'<div>用户列表</div>'
+                        }
+                    },
+                    {
+                        path:'/arctile',
+                        name:'art',
+                        component:{
+                            template:'<div>文章列表</div>'
+                        }
+                    }
+                ]
+            })
+
+            // 2.调用路由
+            let vm=new Vue({
+                el:'#red',
+                router:r1
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="red">
+        <router-link :to="{name:'usr',params:{userId:123}}">用户</router-link>
+        <router-link to="/arctile">文章</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+</html>

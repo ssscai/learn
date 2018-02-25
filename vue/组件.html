@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script>
+        window.onload=function(){
+            // 注册组件   注册在全局
+            Vue.component('cmp-sss',{
+                template:'<div>我的组件</div>'
+            })
+
+            let vm1=new Vue({
+                el:'.box1',
+
+            })
+            let vm2=new Vue({
+                el:'.box2',
+                components:{
+                    'cmp-in-sss':{
+                        template:'<div>局部注册组件</div>',
+                        methods:'',
+                        watch:'',
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="box1">
+        <cmp-sss></cmp-sss>
+        <!-- <cmp-in-sss></cmp-in-sss>只能在box2下面渲染出来 局部组件 -->
+    </div>
+    <div class="box2">
+        <cmp-in-sss></cmp-in-sss>
+    </div>
+</body>
+</html>

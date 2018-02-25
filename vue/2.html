@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script>
+        window.onload=function(){
+            var mychild={
+                template:'<div>child</div>',
+            }
+            var myfooter={
+                template:'<div><my-child></my-child>footer</div>',
+                components:{
+                    'my-child':mychild
+                },
+                data:{
+                    a:1,
+                    b:2
+                }
+            }
+           
+            //1.全局注册组件
+            Vue.component('my-component',{
+                template:'<div> A custom component  </div>'           
+            })
+            new Vue({
+                el:'.box',//对象的挂载位置,
+                // template:'<p> hello {{fruit}}</p>',
+                data:{
+                    isRed:true,
+                    isnotRipe:false,
+                    didColor:'red',
+                    fruit:'apple'
+                },
+                //局部注册到根节点下面
+                components:{
+                    'my-footer':myfooter
+                }
+            })
+
+        }
+    </script>
+</head>
+<body>
+    <div class="box" >
+        <my-component></my-component>
+        <div v-bind:style="{color:didColor}">234677</div>
+        <my-footer></my-footer>
+    </div>
+</body>
+</html>

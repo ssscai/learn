@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width:600px;height:300px;background:yellowgreen;margin:0 auto;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var n=100;
+            function f1(){
+                console.log(n)
+            }
+            f1();//函数f1可以读取全局变量n。
+            //函数外部无法读取函数内部声明的变量
+            function f2(){
+                var m=101;
+            }
+            //console.log(m); m is not defined
+            //函数f2内部声明的变量m，函数外是无法读取的。
+
+            function f3() {
+                var p = 999;
+                function f4() {
+                　　console.log(p); // 999
+                }
+                return f4;
+            }
+            //f3内部的所有局部变量，对f4都是可见的
+            var result=f3();
+            console.log(result,'result')
+            result();
+            //函数f3的返回值就是函数f4，由于f4可以读取f3的内部变量，所以就可以在外部获得f3的内部变量了。
+            //闭包就是函数f4，即能够读取其他函数内部变量的函数。
+        }
+    </script>
+</head>
+<body>
+    <div class="box"></div>1

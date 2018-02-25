@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script>
+        window.onload=function(){
+
+            let myHeaderChild={
+                template:'<p>i am my header child</p>',
+                data:function(){
+                    return {
+                        a:1,
+                        b:2
+                    }
+                }
+            }
+
+            let myHead={
+                template:'<div><p>i am my header </p><my-header-child></my-header-child></div>',
+                components:{
+                    'my-header-child':myHeaderChild
+                }
+            }
+
+            let vm=new  Vue({
+                el:'.box',
+                components:{
+                    'my-head':myHead
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <my-head></my-head>
+    </div>
+</body>
+</html>

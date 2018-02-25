@@ -1,0 +1,29 @@
+1.webpack 配置
+ 打包——js 、css、图片
+ 插件——性能的瓶颈所在
+ 2.webpack原理
+ 官网：https://webpack.js.org/
+
+
+ -----------------------------------------
+ 1、webpack下载,安装：cnpm install webpack -D
+
+
+----------------------
+ 2、devDependencies  开发依赖--不需要打包到生产环境（最终结果文件） cnpm i XXX -D
+    dependencies   生产依赖--需要被打包到生产环境     cnpm i XXX -S
+----------------------
+
+webpack src源文件  dist目标文件
+3、配置webpack.config.js  路径要写绝对路径
+
+webpack --config XXXX.js
+
+默认情况下：用到 哪个，打包哪个
+
+asset  资源 css ,js,pic
+
+
+webpack-dev-server //只能自动同步，不能自动编译
+
+多个文件打包到一个文件

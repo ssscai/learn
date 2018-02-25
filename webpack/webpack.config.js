@@ -1,0 +1,23 @@
+module.exports={
+    entry:`${__dirname}/src/css.js`,
+    output:{
+        filename:'9.bundle.js',
+        path:`${__dirname}/dist/`
+    },
+    devServer:{
+        contentBase:'./dist'
+    },
+    //模块（插件）
+    module:{
+        rules:[
+            {
+                test:/\.css|cssx$/i,   //正则  碰到什么样的文件  启用什么样的模块处理
+                use:['style-loader','css-loader']
+            },
+            {
+                test:/\.jpg|jpeg|png|gif|psd$/i,
+                use:['file-loader']
+            }
+        ]
+    }
+}

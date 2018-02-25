@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        window.onload=function(){
+            //1.声明路由
+            let r1=new VueRouter({
+                routes:[
+                    {path:'/user/:id',component:{
+                        template:'<div>当前用户的id:{{$route.params.id}}</div>'
+                    }},
+                    {path: '/users/:id', component: {template: '<div>当前用户ID：{{$route.params.id}}</div>'}},
+                    {path:'/article',component:{
+                        template:'<div>文章列表</div>'
+                    }},
+                    {path:'/comment',component:{
+                        template:'<div>留言列表</div>'
+                    }}
+                ]
+            })
+
+            let vm=new Vue({
+                el:'#box',
+                router:r1,
+                methods:{
+                    fn_forward(){
+                        this.$router.go(1)
+                    },
+                    fn_back(){
+                        this.$router.go(-1)
+                    },
+                    fn_push(){
+                        this.$router.push('/user')
+                    }
+                }
+            })
+        }
+    </script>
+    <style>
+    .my-link{
+        width:200px;height:100px;border:1px solid red;
+    }
+    .router-link-active{
+        background:yellowgreen;color:red;
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!-- 渲染容器  前端路由不跳转  $router对r1的引用  router-view-->
+        <input type="button" value="前进" @click="fn_forward">
+        <input type="button" value="后退" @click="fn_back">
+        <input type="button" value="进入user" @click="fn_push"></br>
+        <router-link to="/user/32114" class="my-link">用户1</router-link>
+        <router-link to="/user/12345" class="my-link">用户2</router-link>
+        <router-link to="/user/654321" class="my-link">用户3</router-link>
+        <!-- <router-link to="/article" class="my-link">文章</router-link>
+        <router-link to="/comment" class="my-link">留言</router-link> -->
+        <router-view></router-view>         
+    </div>
+</body>
+</html>

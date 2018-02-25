@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script>
+        window.onload=function(){
+            let vm=new Vue({
+                el:'.box',
+                data:{
+                    arr:[12,5,8,99],
+                    json:{
+                        a:12,b:55
+                    },
+                    str:'abscdgdregds',
+                    users:[
+                        { id:'3',name:'blue',pass:'123456'},
+                        { id:'5',name:'zhangsan',pass:'789'},
+                        { id:'9',name:'lis',pass:'654321'}
+                    ]
+                }
+            })
+
+        }
+    </script>
+    
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li v-for="a,index in arr">arr {{index}} :{{a}}</li>
+            <li v-for="val,key in json">json {{key}} :{{val}}</li>
+            <li v-for="i in str">str {{i}}</li>
+            <li v-for="jsons in users" :key="jsons.id" v-cloak="true">{{jsons.id}}str {{jsons.name}}</li>
+        </ul>
+    </div>
+    <script src="./1.php"></script>
+    
+</body>
+</html>

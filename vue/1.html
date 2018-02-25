@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script>
+        window.onload=function(){
+            let vm=new Vue({
+                el:'.box',
+                data:{
+                    a:5,
+                    b:4,
+                    title:'hello world',
+                    c:'',
+                    arr:[
+                        {name:'zs'},
+                        {name:'list'},
+                        {name:'wagnwu'}
+                    ],
+                    show:true,
+                    message:'hello'
+                },
+                methods:{
+                    fn:function(){
+                        alert('ok')
+                    }
+                },
+                computed:{
+                    reverseMessage:function(){
+                        return this.message.split('').reverse().join('')
+                    }
+                }
+            })
+            // setInterval(function(){
+            //     vm.c++;
+            // },1000)
+        }
+    </script>
+</head>
+<body>
+    <div class="box" >
+        <p>message:"{{reverseMessage}}"</p>
+        {{a+b}}
+        <input type="button" value="点击" v-on:click="fn">
+        <a href="javascript:;" v-bind:title="title">你好。vue</a><br>
+        {{c}}
+        <input type="text" v-model="c" debounce="40000">
+        <ul v-for="item in arr">
+            <li>{{item.name}}</li>
+        </ul>
+        <div v-if="show">if</div>
+        <div v-show="show">show</div>
+    </div>
+</body>
+</html>

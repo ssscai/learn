@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script>
+        window.onload=function(){
+            var vm=new Vue({
+                el:'.box',
+                data:{
+                    a:0,
+                    b:0
+                },
+                computed:{
+                    num1:{
+                        get(){
+                            return this.a;
+                        },
+                        set(newVal){
+                            let n=parseInt(newVal);
+                            if(n<0){
+                                n=0
+                            }
+                            this.a=n;
+                        }
+                    },
+                    num2:{
+                        get(){
+                            return this.b;
+                        },
+                        set(newVal){
+                            let n=parseInt(newVal);
+                            if(n<0){
+                                n=0
+                            }
+                            this.b=n;
+                        }
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <input type="text" value="" v-model="num1">
+        <input type="text" value="" v-model="num2">
+        {{a+b}}
+      
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            function foo(){
+                console.log('foo')
+            }
+            var somefoo=foo;
+            var obj={
+                anyfoo:foo
+            }
+            console.log('foo',foo);
+            console.log('somefoo',somefoo);
+            console.log('obj.anyfoo',obj.anyfoo);
+            //以上只是对同一个函数的不同引用
+            //函数和方法在js中是可以互换的
+            var arr=['123','abc'];
+            console.log(arr.length,'before');//2
+            arr.baz='baz';
+            console.log(arr);
+            console.log(arr.length,'after');//2
+            // 可以给数组添加命名属性  但是 数组的长度并不会改变,如果添加的是数字属性。则数字会被默认转换为下标
+        }
+    </script>
+</head>
+<body>
+    <div class="box" style="width:400px;height:600px;background:yellowgreen;margin:0 auto"></div>
+</body>
+</html>

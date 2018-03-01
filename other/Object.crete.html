@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            var foo={
+                something:function(){
+                    console.log('tell me something god')
+                }
+            }
+            var bar=Object.create(foo);
+            bar.something();
+            //Object.create()会创建一个新对象bar并把它关联到我们指定的对象foo.
+            if(!Object.create){
+                Object.create=function(o){
+                    function F(){}
+                    F.prototype=o;
+                    return new F();
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box" style="width:400px;height:400px;background:yellowgreen;margin:0 auto;"></div>
+</body>
+</html>

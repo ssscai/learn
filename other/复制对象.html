@@ -8,6 +8,48 @@
     <script>
         window.onload=function(){
             // 如何复制一个对象？？？？
+            function anotherFunction(){
+
+            }
+            var anotherObject={
+                c:true
+            }
+            var anotherArray=[];
+            var myObject={
+                a:2,
+                b:anotherObject,
+                c:anotherArray,
+                d:anotherFunction
+            }
+            anotherArray.push(anotherObject,myObject);
+            //console.log(anotherArray,'anotherArray.push(anotherObject,myObject)');
+            //es5开始，所有的属性都具备了属性描述符
+            var aamyObject={
+                aa:2
+            }
+            //console.log(Object.getOwnPropertyDescriptor(aamyObject,'aa'));
+            var bbObject={};
+            Object.defineProperty(bbObject,'a',{
+                value:33,
+                writable:true,
+                configurable:true,
+                enumerable:true
+            })
+            console.log(bbObject.a)
+            //ES5中可以使用getter setter部分改写默认操作，但是只能用于单个属性上。getter是一个隐藏函数，会在获取属性值时调用。
+            //setter也是一个隐藏函数，会在设置属性值的时候调用
+
+            //对象的遍历：第一：for--in用来遍历对象的可枚举属性，
+            //如何遍历属性值：对于数值索引的数组时，for循环遍历下标来指向值。
+
+
+            var dataObj={
+                a:2,
+                b:3,
+                c:'ssss'
+            }
+            //实际上new会劫持所有普通函数并用构造对象的形式来调用它
+
         }
     </script>
 </head>

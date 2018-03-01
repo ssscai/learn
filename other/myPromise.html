@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            function MyPromise(fn) {
+                var value;
+                var status = null;
+                var deffers = [];
+
+                function resolve(val) {
+                    if (val && typeof val === "object" || typeof val === 'function') {
+                        var then = val.then;
+                        if (typeof then === 'function') {
+                            doResolve(then.bind(val), resolve, reject);
+                            return;
+                        }
+
+                    }
+                    value = val;
+                    status = true;
+                    final();
+                }
+
+                function reject(val) {
+                    value = val;
+                    status = false;
+                    final();
+                }
+                deResolve(fn, resolve, reject);
+
+                function deResolve(fn, resolve, reject) {
+                    var hasChange = false;
+                    fn(function (value) {
+                        if (hasChange) {
+                            return;
+                        }
+                        hasChange = true;
+                        resolve(value);
+                    }, function (error) {
+                        if (hasChange) {
+                            return;
+                        }
+                        hasChange = true;
+                        reject(value);
+                    })
+                }
+
+                function final() {
+                    for (var i = 0; i < deffers.length; i++) {
+                        handle(deffers[i])
+                    }
+                }
+
+                function handle(deffer) {
+                    var cb = status === true ? deffer.onFullfilled : deffer.onRejected;
+                    if (cb == null) {
+                        status == true ? deffer.resolve(value) : deffer.reject(value);
+                        return;
+                    }
+                    var val;
+                    try {
+                        cb(value)
+                    } catch (e) {
+                        deffer.reject(e);
+                        return;
+                    }
+
+
+                }
+                this.then = function (onFullfilled, onRejected) {
+                    return new MyPromise((resolve, reject) => {
+                        let deffer = {
+                            onFullfilled: onFullfilled,
+                            onRejected: onRejected,
+                            resolve: resolve,
+                            reject: reject
+                        };
+                        deffers.push(deffer)
+                        handle(deffer)
+                    })
+                }
+
+            }
+
+
+            // myPromise 连续调用then
+            // var kk = new MyPromise((resolve, reject) => {
+            //     resolve('success')
+            // });
+            // kk.then(value => {
+            //     console.log(value, ' then1 连续调用then'); //这里会打印，value='success'
+            //     return 'new data'
+            // }, (error) => {
+            //     console.log(error, ' then1')
+            // }).then(value => {
+            //     console.log(value) // 这里会打印，value='new data'
+            // });
+            // 测试then里不写某个回调
+            // var b = new MyPromise((resolve, reject) => {
+            //     resolve('success')
+            // });
+            // b.then(null, (error) => {
+            //     console.log(error, ' then1')
+            // }).then((val) => {
+            //     console.log(val, ' then2 then1没有成功回调') //这里会打印，因为前一个MyPromise没有传成功回调，就会进入这里
+            // }, (error) => {
+            //     console.log(error, ' then2 then1没有成功回调')
+            // });
+            // var b = new MyPromise((resolve, reject) => {
+            //     reject('error')
+            // });
+            // b.then((value) => {
+            //     console.log(value, ' then1')
+            // }, null).then((val) => {
+            //     console.log(val, ' then2 then1没有失败回调')
+            // }, (error) => {
+            //     console.log(error, ' then2 then1没有失败回调') //这里会打印，因为前一个MyPromise没有传失败回调，就会进入这里
+            // });
+
+            //测试回调里报错
+            var ff = new MyPromise(function (resolve, reject) {
+                resolve('errorssss')
+            });
+            ff.then(function (value) {
+                throw '抛个错误'
+                return '3333'
+            }, function (error) {
+                console.log(error, 'then1')
+            }).then(function (val) {
+                console.log(val, 'val')
+            }, function (error) {
+                console.log(error, 'then2 then1执行报错');
+            })
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box" style="width:400px;height:400px;background:yellowgreen;margin:0 auto;"></div>
+</body>
+
+</html>

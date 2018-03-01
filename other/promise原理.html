@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // var a = new Promise(function (resolve, reject) {
+            //     console.log(1);
+            // });
+            // console.log(2);
+            //Promise接收的回调fn是同步执行的以上代码会先打印1，再打印2。
+            function MyPromise(fn) {
+                var value;
+                var status = null;
+                var deffers = [];
+
+                function resolve(val) {
+                    if (val && typeof val === "object" || typeof val === 'function') {
+                        var then = val.then;
+                        if (typeof then === 'function') {
+                            doResolve(then.bind(val), resolve, reject);
+                            return;
+                        }
+
+                    }
+                    value = val;
+                    status = true;
+                    final();
+                }
+
+                function reject(val) {
+                    value = val;
+                    status = false;
+                    final();
+                }
+                // fn(resolve, reject);
+                deResolve(fn, resolve, reject);
+
+                function deResolve(fn, resolve, reject) {
+                    var hasChange = false;
+                    fn(function (value) {
+                        if (hasChange) {
+                            return;
+                        }
+                        hasChange = true;
+                        resolve(value);
+                    }, function (error) {
+                        if (hasChange) {
+                            return;
+                        }
+                        hasChange = true;
+                        reject(value);
+                    })
+                }
+                this.then = function (onFullfilled, onRejected) {
+                    return new MyPromise(function (resolve, reject) {
+                        var deffer = {
+                            onFullfilled: onFullfilled,
+                            onRejected: onRejected,
+                            resolve: resolve,
+                            reject: reject
+                        };
+                        deffer.push(deffer);
+                        handle(deffer)
+                    })
+                }
+            }
+
+            function final() {
+                for (var i = 0; i < deffers.length; i++) {
+                    handle(deffers[i])
+                }
+            }
+
+            function handle(deffer) {
+                var cb = status === true ? deffer.onFullfilled : deffer.onRejected;
+                if (cb == null) {
+                    status == true ? deffer.onFullfilled(value) : deffer.onRejected(value)
+                }
+                var val;
+                try {
+                    cb(value)
+                } catch (e) {
+                    deffer.reject(e);
+                    return;
+                }
+
+                this.then = function (onFullfilled, onRejected) {
+                    var deffer = {
+                        onFullfilled: onFullfilled,
+                        onRejected: onRejected
+                    }
+                    deffers.push(deffer);
+                    handle(deffer);
+                }
+            }
+            // var a=new Promise(function(resolve,reject){
+            //     resolve('success')
+            // });
+            // a.then(function(value){
+            //     console.log(value)
+            // })
+
+            // var b=new Promise(function(resolve,reject){
+            //     resolve('success')
+            // });
+            // console.log(b,'b')
+            // b.then(function(value){
+            //     console.log(value)
+            // },function(err){
+            //     console.log(err)
+            // })
+            //2 测试异步的resolve reject
+            // var c=new Promise(function(resolve,reject){
+            //     setTimeout(function(){
+            //         resolve('success')
+            //     },2000)
+            // });
+            // c.then(function(value){
+            //     console.log(value,'async')
+            // },function(error){
+            //     console.log(error,'async')
+            // })
+            //3 测试resolve和reject都调用的情况
+            // var dd = new Promise(function (resolve, reject) {
+            //     setTimeout(function () {
+            //         resolve('success dd')
+            //     }, 1000)
+            //     reject('张三');
+            // })
+            // dd.then(function (value) {
+            //     console.log(val, '同时调用success')
+            // }, function (error) {
+            //     console.log(error, '同时调用error')
+            // })
+            //5 测试连续调用then的情况
+            // var ee = new Promise(function (resolve, reject) {
+            //     resolve('success')
+            // });
+            // var newP = ee.then(function (val) {
+            //     console.log(val, 'then1');
+            //     return '进入第二个then的成功回调'
+            // }, function (error) {
+            //     console.log(error, 'then1');
+            //     return '进入第二个then的失败回调'
+            // });
+            // newP.then(function (val) {
+            //     console.log(val, 'then2')
+            // }, function (error) {
+            //     console.log(error, 'then2')
+            // });
+            // 测试连续调用then;
+            // var ee=new Promise(function(resolve,reject){
+            //     resolve('success')
+            // });
+            // ee.then(function(value){
+            //     console.log(value,'then1 连续调用then');
+            //     return 'new data'
+            // },function(error){
+            //     console.log(error,'then1')
+            // }).then(function(value){
+            //     console.log(value,'value')
+            // })
+            var ff = new Promise(function (resolve, reject) {
+                resolve('errorssss')
+            });
+            ff.then(function (value) {
+                throw '抛个错误'
+                return '3333'
+            }, function (error) {
+                console.log(error, 'then1')
+            }).then(function (val) {
+                console.log(val, 'val')
+            }, function (error) {
+                console.log(error, 'then2 then1执行报错');
+            })
+
+        }
+    </script>
+</head>
+
+<body>
+    <div style="width:600px;height:600px;background:yellowgreen;margin:0 auto;">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;padding:0;list-style:none;
+        }
+        .slider{
+            width:400px;height:300px;margin:100px auto;position: relative;overflow: hidden;
+        }
+        .slider ul{
+            width:1600px;height:300px;position:absolute;
+        }
+        .slider ul li{
+            float: left;
+        }
+        .slider ol{
+            width:200px;position:absolute;left:10px;bottom:10px;
+        }
+        .slider ol li{
+            float:left;width:20px;height:20px;background:yellowgreen;border-radius: 50%;margin:5px;
+
+        }
+        .slider ol li.active{
+            background:#fff;
+        }
+    </style>
+    <script src="./tool/browser.js"></script>
+    <script src="./tool/react.js"></script>
+    <script src="./tool/react-dom.js"></script>
+    <script type="text/babel">
+        window.onload=function(){
+            class UserList extends React.Component{
+                constructor(...args){
+                    super(...args);
+                    this.state={
+                        users:this.props.users
+                    }
+                    console.log(this.state.users)
+        
+                }
+                deleteChild(id){
+                    let users=this.state.users;
+                    this.setState({
+                        users:users.filter(json=>json.id!=id)
+                    })
+                    console.log(users,'users')
+                }
+                render(){
+                    console.log('重新渲染',this.props.users)
+                    let userst=this.state.users.map(json=><User data={json} parent={this}/>)
+                    return <ul>
+                               {userst}
+                         </ul>
+                }
+            }
+
+            class User extends React.Component{
+                constructor(...args){
+                    super(...args);
+        
+                }
+                fn(){
+                    this.props.parent.deleteChild(this.props.data.id)
+                }
+                render(){
+                    return <li>
+                            <div>
+                                用户名：{this.props.data.name}
+                                密码：{this.props.data.password}
+                                <a href="javascript:;" onClick={this.fn.bind(this)}>删除</a>
+                           </div>
+                        </li>
+                }
+            }
+            ReactDOM.render(
+                <UserList users={[
+                    {id:1,name:'blue1',password:'12354'},
+                    {id:2,name:'blue2',password:'12354'},
+                    {id:3,name:'blue3',password:'12354'}
+                ]}></UserList>,
+                document.getElementById('box')
+            )
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>

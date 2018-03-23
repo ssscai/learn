@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据结构之栈</title>
+    <script>
+        window.onload = function () {
+            function Stack() {
+                var items = []; //保存栈里面的元素
+                this.push = function (element) {
+                    items.push(element)
+                }
+                this.pop = function () {
+                    return items.pop();
+                }
+                //this.peek返回栈顶元素
+                this.peek = function () {
+                    return items[items.length - 1]
+                }
+                this.isEmpty = function () {
+                    return items.length == 0;
+                }
+                this.size = function () {
+                    return items.length;
+                }
+                this.clear = function () {
+                    items = [];
+                }
+                this.print = function () {
+                    console.log(items.toString())
+                }
+            }
+            //栈的使用  底层还是数组的操作
+            var stack = new Stack();
+            console.log(stack.isEmpty());
+            stack.push(5);
+            stack.push(8);
+            console.log(stack.peek());
+            // 栈的用法：十进制转化为二进制
+            function divideBy2(decNumber) {
+                var remstack = new Stack();
+                var rem;
+                var binaryString;
+                while (decNumber > 0) {
+                    rem = Math.floor(decNumber % 2);
+                    remstack.push(rem);
+                    decNumber = Math.floor(decNumber / 2);
+                }
+                while (!remstack.isEmpty()) {
+                    binaryString += remstack.pop().toString();
+                }
+                return binaryString;
+            }
+            console.log(divideBy2(10))
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box" style="width:400px;height:600px;background:yellowgreen;margin:0 auto;"></div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./tool/browser.js"></script>
+    <script src="./tool/react.js"></script>
+    <script src="./tool/react-dom.js"></script>
+    <script type="text/babel">
+        window.onload=function(){
+            class Test extends React.Component{
+                constructor(...args){
+                    super(...args);
+                    //状态初始化  只有构造函数内初始化
+                    this.state={
+                        a:12,
+                        b:5
+                    }
+                }
+                fn(){
+                    //alert(this.props.a++)//属性是只读的 不能赋值
+                    // alert(this.state.a)
+                    this.setState({
+                        a:this.state.a+1
+                    })
+                }
+                render(){
+                    console.log('渲染了')
+                    return <div >
+                        {this.state.a}
+                        <input type="button" value="按钮"  onClick={this.fn.bind(this)}/>
+                        </div>
+                }
+                
+            }
+
+            ReactDOM.render(
+                <Test a={33} ></Test>,
+                document.getElementById('box')
+            )
+
+        }
+    
+    </script>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>

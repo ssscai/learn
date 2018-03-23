@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;padding:0;list-style:none;
+        }
+        .slider{
+            width:400px;height:300px;margin:100px auto;position: relative;overflow: hidden;
+        }
+        .slider ul{
+            width:1600px;height:300px;position:absolute;
+        }
+        .slider ul li{
+            float: left;
+        }
+        .slider ol{
+            width:200px;position:absolute;left:10px;bottom:10px;
+        }
+        .slider ol li{
+            float:left;width:20px;height:20px;background:yellowgreen;border-radius: 50%;margin:5px;
+
+        }
+        .slider ol li.active{
+            background:#fff;
+        }
+    </style>
+    <script src="./tool/browser.js"></script>
+    <script src="./tool/react.js"></script>
+    <script src="./tool/react-dom.js"></script>
+    <script type="text/babel">
+        window.onload=function(){
+
+
+            class Banner extends React.Component{
+                constructor(...args){
+                    super(...args);
+                    this.state={
+                        now:0
+                    }
+                }
+                fn(index){
+                    console.log(index)
+                    this.setState({
+                        now:index
+                    })
+                }
+                render(){
+                    var arrlis=this.props.list.map(function(str,index){
+                        return <li key={index}><img src={str}/></li>
+                    })
+                    var self=this;
+                    // var olis=this.props.list.map(function(str,index){
+                        
+                    //     return  <li key={index} className={index==0?'active':''} onClick={self.fn.bind(self,index)}></li>
+                    // })
+                    var olis=this.props.list.map((str,index)=>
+                    <li key={index} className={index==this.state.now?'active':''} onClick={this.fn.bind(this,index)}></li>)
+                    return <div  className="slider">
+                                <ul style={{left:-400*this.state.now}}>
+                                   {arrlis}
+                                </ul>
+                                <ol>
+                                    {olis}
+                                </ol>
+                           </div>
+                }
+            }
+            ReactDOM.render(
+                <Banner list={['./img/1.jpg','./img/2.jpg','./img/3.jpg','./img/4.jpg']}></Banner>,
+                document.getElementById('box')
+            )
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>

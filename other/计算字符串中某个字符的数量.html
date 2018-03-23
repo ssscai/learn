@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box" style="width:100px;height:400px;background:yellowgreen;margin:0 auto;"></div>
+    <script>
+        //计算字符串中某个字符的数量
+        //方法一： for循环  includes
+        var s='mobilem';
+        var count=0;
+        for(var i=0;i<s.length;i++ ){
+            if(s[i].includes('m')){
+                count++;
+            }
+        }
+        console.log(count)
+        //方法二：正则
+        var str = "abbbbbsdsdsdasdlsfj";
+        var c = "b"; // 要计算的字符
+        var regex = new RegExp(c, 'g'); // 使用g表示整个字符串都要匹配
+        var result = str.match(regex);
+        var count = !result ? 0 : result.length;
+        console.log(c + " 的数量为 " + count);
+        //方法三：(s.split('.')).length-1
+        var ki='ssdkjboubushdnoj';
+        var mimi=(ki.split('s')).length-1;
+        console.log(mimi,'mimi')
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width:200px;height:200px;
+        }
+        .box.active{
+            background:red;
+        }
+        .box.normal{
+            background:yellowgreen;
+        }
+    
+    </style>
+    <script src="./tool/browser.js"></script>
+    <script src="./tool/react.js"></script>
+    <script src="./tool/react-dom.js"></script>
+    <script type="text/babel">
+        window.onload=function(){
+            class Test extends React.Component{
+                constructor(...args){
+                    super(...args);
+                    //状态初始化  只有构造函数内初始化
+                    this.state={
+                        flag:1
+                    }
+                }
+                fn(){
+                    if(this.state.flag==1){
+                        this.setState({
+                            flag:0
+                        })
+                    }else{
+                        this.setState({flag:1})
+                    }
+                }
+                render(){
+                    // style类似于json  className类似数组
+                    let arr=null;
+                    if(this.state.flag==1){
+                        arr=['box','active']
+                    }else{
+                        arr=['box','normal']
+                    }
+                    return <div>
+                            <div className={arr.join(' ')}>
+                                {this.state.a}
+                            </div>
+                        <input type="button" value="按钮"  onClick={this.fn.bind(this)}/>
+                        </div>
+                }
+                
+            }
+
+            ReactDOM.render(
+                <Test a={33} ></Test>,
+                document.getElementById('box')
+            )
+
+        }
+    
+    </script>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>

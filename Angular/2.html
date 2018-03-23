@@ -1,19 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="aaa">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="angular.js"></script>
+    <script>
+        // 在ng中  脏检查  在函数结束的时候检查数据是否更改  不能有异步操作
+        let mod = angular.module('aaa', []);
+        mod.controller('ctrl1', function ($scope,$timeout,$interval) {
+            $scope.a = 12;
+            $scope.show = function () {
+                //$scope.a=5;
+                // setTimeout(function(){
+                //     $scope.$apply();//应用  强迫ng做一次检查
+                //     $scope.a=5;
+                // },100)
+                // $timeout(function () {
+                //     $scope.a = 5;
+                // }, 100);
+                $interval(function(){
+                    $scope.a++;
+                },100)
+            }
+        });
+    </script>
 </head>
+
 <body>
-    <div ng-app="">
-        <input type="text" ng-model="name">
-        <div >
-            我的名字叫：{{name}}
+    <div ng-controller="ctrl1">
+        <input type="text" ng-model="a">
+        <div>
+            我的名字叫：
         </div>
+        <input type="button" style="width:100px;height:100px;background:yellowgreen;" ng-click="show()">
     </div>
-    
 </body>
+
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./tool/browser.js"></script>
+    <script src="./tool/react.js"></script>
+    <script src="./tool/react-dom.js"></script>
+    <script type="text/babel">
+        window.onload=function(){
+
+            class Test extends React.Component{
+                constructor(...args){
+                    super(...args);
+                    this.state={
+                        a:0,
+                        b:0
+                    }
+                }
+                fn(){
+                    console.log(parseInt(this.refs['txt1'].value))
+                    this.setState({
+                        a:parseInt(this.refs['txt1'].value),
+                        b:parseInt(this.refs['txt2'].value)
+                    })
+                }
+                render(){
+                    return <div>
+                            <input type="text" ref="txt1" />
+                            <input type="text" ref="txt2"/>
+                            <input type="button" value="="  onClick={this.fn.bind(this)}/>
+                            {this.state.a+this.state.b}
+                        </div>
+                }
+            }
+            ReactDOM.render(
+                <div>
+                        <Test></Test>
+                        <Test></Test>
+                        <Test></Test>
+                </div>,
+                document.getElementById('box')
+            )
+        }
+    
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

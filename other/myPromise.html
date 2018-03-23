@@ -12,7 +12,9 @@
                 var value;
                 var status = null;
                 var deffers = [];
-
+                //数组deffers来保存then函数传入的成功失败回调
+                //value代表当前Promise最终改变的值，是resolve的值或者reject的error。status代表Promise的状态，
+                //最初是pending，用null表示。reoslve了改变为true，reject的话改为false。只能改变一次，无论转成true还是false都不能再改变了。
                 function resolve(val) {
                     if (val && typeof val === "object" || typeof val === 'function') {
                         var then = val.then;
@@ -20,7 +22,6 @@
                             doResolve(then.bind(val), resolve, reject);
                             return;
                         }
-
                     }
                     value = val;
                     status = true;
@@ -70,8 +71,6 @@
                         deffer.reject(e);
                         return;
                     }
-
-
                 }
                 this.then = function (onFullfilled, onRejected) {
                     return new MyPromise((resolve, reject) => {

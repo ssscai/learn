@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 链表一种动态的数据结构 可以从任意添加或移除项
+        window.onload = function () {
+            function LinkedList() {
+                var Node = function (element) {
+                    this.element = element;
+                    this.next = null;
+                }
+                var length = 0;
+                var head = null;
+                this.append = function () {};
+                this.insert = function () {};
+                this.removeAt = function () {};
+            }
+            //实现第一个方法：向链表尾部插入元素
+            this.append = function (element) {
+                var node = new Node(element);
+                var current;
+                if (head === null) {
+                    //head==null列表中第一个元素
+                    head = node;
+                } else {
+                    current = head;
+                    // 循环列表 直到找到最后一项
+                    while (current.next) {
+                        current = current.next;
+                    }
+                    // 循环后找到最后一项
+                    current.next = node
+                }
+                length++;
+            }
+            var list = new LinkedList();
+            list.append(10);
+            console.log(list);
+            // 给定位置移除一个元素
+            this.removeAt = function (position) {
+                if (position > -1 && position < length) {
+                    var current=head;
+                    var previous;
+                    var index=0;
+                    //移除第一项元素
+                    if(position===0){
+                        head=current.next;
+                    }else{
+                        while(index++<position){
+                            previous=current;
+                            current=current.next
+                        }
+                        previous.next=current.next;
+                    }
+                    length--;
+                    return current.element
+
+                } else {
+                    return null;
+                }
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box" style="width:400px;height:600px;background:yellowgreen;margin:0 auto;"></div>
+</body>
+
+</html>

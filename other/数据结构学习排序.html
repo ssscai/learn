@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            function ArrayList() {
+                var array = [];
+                this.insert = function (item) {
+                    array.push(item)
+                }
+                this.toString = function () {
+                    return array.join();
+                }
+                this.bubbleSort = function () {
+                    var length = array.length;
+                    for (var i = 0; i < length; i++) {
+                        for (var j = 0; j < length - 1 - i; j++) {
+                            if (array[j] > array[j + 1]) {
+                                swap(j, j + 1)
+                            }
+
+                        }
+                    }
+
+                }
+                function swap(index1, index2) {
+                    var aux = array[index1]; //中间变量  交换两个值
+                    array[index1] = array[index2];
+                    array[index2] = aux;
+                }
+            }
+            function createNonSortedArray(size) {
+                var array = new ArrayList();
+                for (var i = size; i > 0; i--) {
+                    array.insert(i)
+                }
+                return array;
+            }
+            // var array = createNonSortedArray(5);
+            var array = new ArrayList();
+            array.insert(5);
+            array.insert(2);
+            array.insert(8);
+            array.insert(18);
+            console.log(array, 'array')
+            console.log(array.toString());
+            array.bubbleSort();
+            console.log(array.toString())
+        }
+    </script>
+</head>
+<body>
+    <div class="box" style="width:400px;height:600px;background:yellowgreen;margin:0 auto;"></div>
+</body>
+</html>

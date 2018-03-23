@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定义自己的组件</title>
+    <script src="./tool/browser.js"></script>
+    <script src="./tool/react.js"></script>
+    <script src="./tool/react-dom.js"></script>
+    <script type="text/babel">
+        class Test extends React.Component{
+            constructor(...args){
+                super(...args);
+                this.a=12
+            }
+            fn(){
+                alert(this.props.b);
+                alert(this.props.c);
+                alert(this.props.b+this.props.c)
+                alert(this.a);
+            }
+            render(){
+                console.log(this,'render this')
+                return <div>
+                        <span>bbb</span> 
+                        <input type="button" value="按钮" onClick={this.fn.bind(this)}/>      
+                    </div>
+            }
+        }
+
+
+        window.onload=function(){
+            let oDiv=document.getElementById('div1');
+            console.log(ReactDOM);
+            //<span>aaa</span> jsx的语法
+            ReactDOM.render(
+                <Test b={12} c={15}/>,
+                oDiv
+            );
+
+        }
+    </script>
+</head>
+<body>  
+    <div id="div1">
+
+    </div>
+</body>
+</html>

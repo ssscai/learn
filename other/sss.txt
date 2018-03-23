@@ -1,0 +1,16 @@
+Flex，animation动画，操作节点的方法，h5新标签，css3选择器（如何查找img中src以jpg结尾），css3的新属性，
+this指向（this执行的改变，call和apply区别），fastclick插件的原理，有没有封装过什么组件。
+深拷贝一个对象，判断数据类型，原型中constructor，instanceof原理，getPrototypeOf，数组排序和去重，
+计算字符串中某个字符的数量，pc各浏览器兼容性考虑，h5中ios和android的适配，正则表达式，
+把类对象数组装换成数组，内存泄漏问题，代码的规范，sass中extend和mixins的区别，
+webpack打包所用到的loader和plugins，webpack打包原理，vue的原理（Virtual DOM），seajs和requirejs的写法及区别。
+//getPrototypeOf方法是ES5中用来得到某个对象的原型对象的标准方法
+
+
+类对象数组装换成数组:
+    Es6 Array.from  
+    Array.prototype.slice.call(arguments)可以将类数组转化为数组对象，[].slice.call(arguments)亦可
+    slice(begin,end) 方法选择一个从开始到结束(不包括结束)的数组的一部分浅拷贝到一个新的数组对象，方法不会改变原数组。
+    如果是对象则拷贝对象的引用到新数组，如果是基本类型则会拷贝这些值到新数组。
+    Array.prototype.splice.call(arguments,0);返回一个包含被删除元素的数组，
+    start是必须值，其他是可选值，item表示要添加的元素，splice方法会直接对数组进行修改

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* .box {
+            animation: mymove 5s infinite;
+        }
+
+        @keyframes mymove {
+            from {
+                left: 500px;
+            }
+            to {
+                left: 600px
+            }
+        } */
+    </style>
+    <script>
+        window.onload = function () {
+            //js实现动画  定时器
+            var oBox = document.getElementById('box');
+            var flag = true;
+            var left = 0;
+
+            function myfun() {
+                if (left == 0) {
+                    flag = true
+                } else if (left == 100) {
+                    flag = false;
+                }
+                if (flag) {
+                    oBox.style.left = `${left++}px`
+                } else {
+                    oBox.style.left = `${left--}px`
+                }
+
+
+            }
+            setInterval(myfun, 1000 / 60)
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="box" class="box" style="width:100px;height:100px;background:pink;margin:0 auto;position:absolute;left:0"></div>
+</body>
+
+</html>

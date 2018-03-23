@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            animation: mymove 5s infinite;
+            -webkit-animation: mymove 5s infinite;
+        }
+
+        @keyframes mymove {
+            from {
+                top: 0px;
+            }
+            to {
+                top: 200px;
+            }
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //使用js实现一个持续的动画效果
+            // var e = document.getElementById('box1')
+            // var flag = true;
+            // var left = 0;
+            // setInterval(() => {
+            //     left == 0 ? flag = true : left == 100 ? flag = false : ''
+            //     flag ? e.style.left = ` ${left++}px` : e.style.left = ` ${left--}px`
+            // }, 1000 / 60)
+
+            //兼容性处理
+            // window.requestAnimFrame = (function () {
+            //     return window.requestAnimationFrame ||
+            //         window.webkitRequestAnimationFrame ||
+            //         window.mozRequestAnimationFrame ||
+            //         function (callback) {
+            //             window.setTimeout(callback, 1000 / 60);
+            //         };
+            // })();
+
+            // var e = document.getElementById("box2");
+            // var flag = true;
+            // var left = 0;
+
+            // function render() {
+            //     left == 0 ? flag = true : left == 100 ? flag = false : '';
+            //     flag ? e.style.left = ` ${left++}px` : e.style.left = ` ${left--}px`;
+            // }
+
+            // (function animloop() {
+            //     render();
+            //     requestAnimFrame(animloop);
+            // })();
+            // 方法告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。
+            //该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。
+            var timer = requestAnimationFrame(function () {
+                console.log(0);
+            });
+            console.log(timer); //1
+        }
+    </script>
+</head>
+
+<body>
+    <!-- <div class="box" style="width:100px;height:100px;background:yellowgreen;margin:0 auto;position:absolute;"></div> -->
+    <!-- <div id="box1" style="width:100px;height:100px;background:yellowgreen;margin:0 auto;position:absolute;"></div> -->
+    <div id="box2" style="width:100px;height:100px;background:yellowgreen;margin:0 auto;position:absolute;"></div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react 入门</title>
+    <script src="./tool/browser.js"></script>
+    <script src="./tool/react.js"></script>
+    <script src="./tool/react-dom.js"></script>
+    <script type="text/babel">
+        window.onload=function(){
+            let oDiv=document.getElementById('div1');
+            console.log(ReactDOM);
+            //<span>aaa</span> jsx的语法
+            ReactDOM.render(
+                <span className='box'>aaa</span>,
+                oDiv
+            );
+
+        }
+    </script>
+</head>
+<body>  
+    <div id="div1">
+
+    </div>
+</body>
+</html>

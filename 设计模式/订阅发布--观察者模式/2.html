@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./common.js"></script>
+    <script>
+        window.onload=function(){
+            //将观察者放在闭包中，当页面加载就立即执行
+            // var Observer=(function(){
+            //     var _messages={};
+            //     return {
+            //         regist:function(type,fn){
+            //             if(typeof _messages[type]=='undefined'){
+            //                 _messages[type]=[fn]
+            //             }else{
+            //                 _messages[type].push(fn)
+            //             }
+            //         },
+            //         fire:function(type,args){
+            //             if(!_messages[type]){
+            //                 return
+            //             }
+            //             var events={
+            //                 type:type,
+            //                 args:args||{}
+            //             };
+            //             var len=_messages[type].length;
+            //             for(var i=0;i<len;i++){
+            //                 _messages[type][i].call(this,events)
+            //             }
+            //         },
+            //         remove:function(type,fn){
+            //             if(_messages[type] instanceof Array){
+            //                 var i=_messages[type].length-1;
+            //                 for(i;i>=0;i--){
+            //                     _messages[type][i]===fn&&_messages[type].splice(i,1)
+            //                 }
+            //             }
+            //         }
+            //     }
+            // })()
+            // Observer.regist('test',function(e){
+            //     console.log(e.type,e.args.msg)
+            // })
+            Observer.fire('test',{msg:'传递参数12'})
+        }
+    </script>
+</head>
+<body>
+    <div class="box" style="width:400px;height:400px;background:yellowgreen">sss</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;padding:0;list-style: none;
+    }
+    .box{
+        width:400px;height:300px;padding:50px;margin:50px auto;
+        background:yellowgreen;
+    }
+    </style>
+    <script src="./jquery.js"></script>
+    <script>
+        window.onload=function(){
+            var documentHeight=$(document).height();
+            var offsetTop=$('.box').offset().top;
+            //用整个文档的高度减去元素到文档顶部的距离。
+            var result=documentHeight-offsetTop;
+            console.log(result,'offsetTop')
+        }
+    </script>
+
+
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

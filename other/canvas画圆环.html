@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            var c1=document.getElementById('c1');
+            var gb=c1.getContext('2d');
+            gb.beginPath();
+            gb.arc(400,300,50,0,2*Math.PI,false);
+            gb.strokeStyle="red";
+            gb.beginPath();
+            gb.arc(400,300,100,0,2*Math.PI,false);
+            gb.stroke();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="c1" width="600" height="800"></canvas>
+</body>
+</html>

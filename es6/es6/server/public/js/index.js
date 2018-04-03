@@ -77,7 +77,7 @@ module.exports = __webpack_require__(1);
 "use strict";
 
 
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./exerise/2017-11-09\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(2);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -87,6 +87,8 @@ var Test = function Test() {
     this.a = 'hello world';
 };
 
+/********课堂代码练习开始*************/
+//import './exerise/2017-11-09';
 /********课堂代码练习开始结束*************/
 
 // import './exerise/1';
@@ -125,7 +127,188 @@ var Test = function Test() {
 //import './class/reg';
 // import './class/reg1';
 var test = new Test();
-/********课堂代码练习开始*************/
+
+// import './new/1';
+// import './new/array/arr';
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+{
+    var test = function test(x) {
+        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'sss';
+
+        console.log(x, y);
+    };
+
+    test('hi');
+}
+{
+    var _test = function _test(x) {
+        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : x;
+
+        console.log(x, 'kkkk', y);
+    };
+
+    var x = 'sss';
+
+    _test('hi你好你好你好');
+    //调用时函数内部的变量x已经生成，所以y等于参数x而不是全局x
+}
+{
+    var _test2 = function _test2() {
+        var y = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _x3;
+
+        console.log(_x3, 'kkkk', y);
+    };
+    //test();
+
+
+    var _x3 = 'sss';
+}
+{
+    var _test3 = function _test3() {
+        var yy = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : xx;
+        return function () {
+            var xx = 2;
+            console.log(xx, 'kkkk', yy);
+        }();
+    };
+    //test();// 报错x is not defined
+
+}
+{
+    var zs = function zs(x, y, z) {
+        console.log(arguments[0]);
+        console.log(arguments);
+    };
+
+    var fn = function fn() {
+        alert(this.length);
+    };
+
+    zs(1, 2, 3);
+    /******************************/
+    var length = 10;
+
+    var obj = {
+        length: 5,
+        method: function method(fn) {
+            arguments[0];
+            console.log(arguments[0]);
+        }
+        //arguments = {
+        //     0: fn, //也就是 functon() {alert(this.length)} 
+        //     1: 第二个参数, //没有 
+        //     2: 第三个参数, //没有
+        //     ..., 
+        //     length: 1 //只有一个参数
+        // }
+    };obj.method(fn);
+}
+{
+    var _console, _console2, _console3;
+
+    (_console = console).log.apply(_console, ['a'].concat([1, 2, 4]));
+    var arrarr = [[1, 2, 3, 4], [5, 6, 7, 8]];
+    console.log([1, 2, 3].concat([4, 5, 6]));
+    (_console2 = console).log.apply(_console2, [1, 2, 3].concat([4, 5, 6]));
+    var arr1 = [1, 2, 3, 4];
+    var arr2 = [7, 8, 9];
+    var arr3 = arr1.concat(arr2);
+    (_console3 = console).log.apply(_console3, _toConsumableArray(arr3));
+}
+{
+    var add = function add() {
+        var sum = 0;
+
+        for (var _len = arguments.length, values = Array(_len), _key = 0; _key < _len; _key++) {
+            values[_key] = arguments[_key];
+        }
+
+        console.log(values, 'values');
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = values[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var val = _step.value;
+
+                sum += val;
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        return sum;
+    };
+
+    console.log(add(1, 2, 3));
+}
+{
+    var addtest = function addtest(fn, zzz) {
+        console.log(arguments[0], 'sss', arguments[1]);
+        fn();
+    };
+
+    addtest(function (zzz) {
+        console.log('sss');
+    }, '222');
+}
+{
+    //箭头函数
+
+    var arrow = function arrow(v) {
+        return v * 2;
+    };
+
+    console.log(arrow(2));
+}
+{
+    console.log(Object.assign({ a: 1 }, { b: 2 }));
+}
+{
+    //Proxy  obj供应商 原始对象 对用户来说不可见
+    var _obj = {
+        time: '2017-03-30',
+        name: 'net',
+        _r: 123
+        //代理商
+
+    };var monitor = new Proxy(_obj, {
+        //代理的东西,拦截对象属性的读取
+        get: function get(target, key) {
+            return target[key].replace('2017', '2018');
+        },
+        set: function set(target, key, value) {
+            if (target[key] == 'name') {
+                return target[key] = value;
+            } else {
+                return target[key];
+            }
+        }
+    });
+    monitor.name = '123';
+    console.log('get', monitor.name);
+}
 
 /***/ })
 /******/ ]);

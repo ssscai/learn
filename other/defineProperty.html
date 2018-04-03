@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var user = {},
+            nameValue = 'Joe';
+            Object.defineProperty(user, 'name', {
+                get: function () {
+                    return nameValue
+                },
+                set: function (newValue) {
+                    nameValue = newValue;
+                },
+                configurable: true //to enable redefining the property later
+            });
+            user.name //Joe 
+            user.name = 'Bob'
+            user.name //Bob
+            nameValue //Bob
+            var value='zhangsan'
+            function fn(){
+                console.log(value)
+            }
+            function bar(){
+                var value='lisi';
+                console.log(this)
+                fn();
+            }
+            bar();
+        }
+    </script>
+</head>
+
+<body>
+    <div style="width:400px;height:400px;background:yellowgreen"></div>
+</body>
+
+</html>

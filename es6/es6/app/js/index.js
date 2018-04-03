@@ -4,6 +4,11 @@ class Test {
     }
 }
 let test = new Test();
+
+
+// import './new/1';
+// import './new/array/arr';
+import './new/function/1';
 /********课堂代码练习开始*************/ 
 //import './exerise/2017-11-09';
 /********课堂代码练习开始结束*************/ 

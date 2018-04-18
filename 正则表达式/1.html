@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box" style="width:400px;height:400px;background:yellowgreen;"></div>
+    <script>
+        var regex=/hello/;
+        console.log(regex.test('hellossss'));
+        //{}横向某一个字符出现的次数
+        var regex1=/ab{2,5}c/g;
+        var str='abcabbcabbbcabbbbcabbbbbbbc';
+        console.log(str.match(regex1));
+        //[]纵向 第二个位置可能出现的位置1/2/3/4
+        var regex2=/a[1234]b/g;
+        var str2='a0b a1c a2b a3d a4b';
+        console.log(str2.match(regex2));
+        //[^abc]，表示是一个除"a"、"b"、"c"之外的任意一个字符。字符组的第一位放^（脱字符），表示求反的概念
+    </script>
+</body>
+
+</html>

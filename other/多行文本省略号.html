@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .oneline {
+            width: 400px;
+            height: 30px;
+            line-height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .twoline {
+            width: 400px;
+            height: 90px;
+            line-height: 30px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .thridthree {
+            position: relative;
+            font-size: 24px;
+            line-height: 1.5em;
+            /* 高度为需要显示的行数*行高，比如这里我们显示两行，则为3 */
+            height: 3em;
+            overflow: hidden;
+        }
+
+        thridthree::after {
+            content: "...";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 0 5px;
+            background-color: #fff;
+        }
+
+        p {
+            position: relative;
+            line-height: 1.5em;
+            /* 高度为需要显示的行数*行高，比如这里我们显示两行，则为3 */
+            height: 3em;
+            overflow: hidden;
+        }
+
+        p:after {
+            content: "...";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 0 5px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" style="width:400px;height:1300px;background:yellowgreen">
+        <p>文本溢出我们经常用到的应该就是text-overflow:ellipsis了，相信大家也很熟悉，但是对于多行文本的溢出处理确接触的不是很多，最近在公司群里面有同事问到，并且自己也遇到过这个问题，所以专门研究过这个问题。文本溢出我们经常用到的应该就是text-overflow:ellipsis了，相信大家也很熟悉，但是对于多行文本的溢出处理确接触的不是很多，最近在公司群里面有同事问到，并且自己也遇到过这个问题，所以专门研究过这个问题。</p>
+        <!-- <p class="oneline">
+            打开新的安全 WebSocket 连接(wss) 可选的回调，在连接出错时调用 可选的回调，在连接终止时调用 可选的回调，在 WebSocket 连接建立时调用 客户端先向服务器发送一条消息 回调函数，服务器每发回一条消息就调用一次 根据接收到的消息，决定调用二进制还是文本处理逻辑
+            作者：梁王 链接：https://juejin.im/post/5aae10adf265da239c7b2443 来源：掘金 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+        </p>
+        <p class="twoline">
+            打开新的安全 WebSocket 连接(wss) 可选的回调，在连接出错时调用 可选的回调，在连接终止时调用 可选的回调，在 WebSocket 连接建立时调用 客户端先向服务器发送一条消息 回调函数，服务器每发回一条消息就调用一次 根据接收到的消息，决定调用二进制还是文本处理逻辑
+            作者：梁王 链接：https://juejin.im/post/5aae10adf265da239c7b2443 来源：掘金 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+        </p>
+        <p class="thridthree">
+            打开新的安全 WebSocket 连接(wss) 可选的回调，在连接出错时调用 可选的回调，在连接终止时调用 可选的回调，在 WebSocket 连接建立时调用 客户端先向服务器发送一条消息 回调函数，服务器每发回一条消息就调用一次 根据接收到的消息，决定调用二进制还是文本处理逻辑
+            作者：梁王 链接：https://juejin.im/post/5aae10adf265da239c7b2443 来源：掘金 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+        </p> -->
+    </div>
+</body>
+
+</html>

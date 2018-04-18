@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box" style="width:400px;height:400px;background:yellowgreen;"></div>
+    <script>
+        // setTimeout(function(){
+        //     console.log(this)
+        // })
+        var obj={
+            a:1,
+            b:2,
+            fn(){
+                console.log(this)
+            }
+        }
+        obj.fn();
+         setTimeout(obj.fn(),1000);
+         localStorage.setItem('keyssss', './arrow.html');
+    
+    </script>
+    <!-- 如何让一个文件在浏览器中缓存三天 ，setTimeout this 为啥是window-->
+    <!-- props数据修改触发哪几个生命周期函数 -->
+
+</body>
+</html>

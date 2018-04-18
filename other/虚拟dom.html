@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box" style="width:200px;height:300px;background:yellowgreen">123</div>
+    <script>
+        // 数据 结构
+        // var element = {
+        // tagName: 'ul', // 节点标签名
+        // props: { // DOM的属性，用一个对象存储键值对
+        //     id: 'list'
+        // },
+        // children: [ // 该节点的子节点
+        //     {tagName: 'li', props: {class: 'item'}, children: ["Item 1"]},
+        //     {tagName: 'li', props: {class: 'item'}, children: ["Item 2"]},
+        //     {tagName: 'li', props: {class: 'item'}, children: ["Item 3"]},
+        // ]
+        // }
+        function ElementMyself(tagName, props, children) {
+            this.tagName = tagName;
+            this.props = props;
+            this.children = children;
+        }
+        var ul = new ElementMyself('ul', {
+            id: 'list'
+        }, [
+            new ElementMyself('li', {
+                class: 'item'
+            }, 'item1'),
+            new ElementMyself('li', {
+                class: 'item'
+            }, 'item2'),
+            new ElementMyself('li', {
+                class: 'item'
+            }, 'item3')
+        ]);
+        console.log(ul, 'ul');
+        ElementMyself.prototype.render = function () {
+            var el = document.createElement(this.tagName) // 根据tagName构建
+            var props = this.props
+
+            for (var propName in props) { // 设置节点的DOM属性
+                var propValue = props[propName]
+                el.setAttribute(propName, propValue)
+            }
+
+            var children = Array.prototype.slice.call(this.children || []);
+            children.forEach(function (child) {
+        
+                var childEl;
+                if(child instanceof ElementMyself){
+                    childEl=child.render()
+                }else{
+                    childEl=document.createTextNode(child) 
+                }
+                // var childEl = (child instanceof ElementMyself) ?child.render() // 如果子节点也是虚拟DOM，递归构建DOM节点
+                //     :
+                //     document.createTextNode(child) // 如果字符串，只构建文本节点
+                el.appendChild(childEl)
+            })
+
+            return el
+        }
+
+        var ulRoot = ul.render();
+        document.body.appendChild(ulRoot)
+    </script>
+
+
+</body>
+
+</html>
